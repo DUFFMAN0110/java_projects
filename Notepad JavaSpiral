@@ -1,0 +1,62 @@
+/*if(num != spiral * spiral){
+        SPINNER: for(int i = y ; i < map.length; i++)
+            {
+
+                HELL: for(int l = x; l <= i; l++){
+                    if(x == i)
+                    { 
+                        map[i][x - i] = num; 
+                        if(map[i][x - i] == spiral)
+                        {
+                            break HELL; 
+                        }
+                    } 
+                }
+                if(map[i][x - i] == spiral)
+                {
+                    for(int j = 0; j < spiral; j++)
+                    {
+                        map[i][j] = num;
+                        num++;
+                    }
+                    FARSIDELINE: for(int k = spiral - 2; k >= 0; k--)
+                    {
+                        ascnd = spiral - 1; 
+                        map[k][ascnd] = num;
+                        num++; 
+                        if(map[k][ascnd] == map[y][ascnd])
+                        {
+                            break FARSIDELINE;
+                        }
+                        continue FARSIDELINE; 
+                    } 
+                    TOPLINE: for(int g = changeX ; g >= end ; g-- )
+                    {
+                        map[left][g] = num; 
+                        num++;
+                        if(map[left][g] == map[y][y + 1])
+                        {
+                            break TOPLINE;
+                            
+                        }
+                        continue TOPLINE; 
+                    }
+                    LEFTSIDELINE: for(int s = 1 ; s <= changeYUp; s++)
+                    {
+                        map[s][end] = num;
+                        num++;
+                        
+                    }
+                }            
+            num++;
+            x++; 
+            if(x>4 && i > 4)
+            {
+                i = y; 
+                y++;
+                x = newSpiral; 
+                newSpiral++;
+            }
+             
+        }
+    }
