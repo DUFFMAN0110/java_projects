@@ -11,7 +11,7 @@ public class Spiral
     private int distU; // gonna start on the top/ y coordinate, ++ not -- until it equals spiral / 2
     private int distD; // gonna start on the bottom/ y coordinate down, -- not ++ until it equals / 2
     // once distU or distD == dist R or distL then end the coded
-
+    private int j = distR;
 
     public Spiral(int s)
     {
@@ -19,32 +19,90 @@ public class Spiral
     }
     public void traverseEvenSpiral()
     {
-        //nested for loop
-    }
-    public void traverseOddSpiral()
-    { 
+        int middle = spiral / 2; 
         int num = 1; 
         distL = 0;
         distR = spiral - 1;
         distU = 0;
         distD = spiral - 1;
         map = new int [spiral][spiral];
+        
+        do{
+            for(int i = distU; i < distD; i++)
+            {
+                map[i][distL] = num;
+                num++; 
+            }
+            for(int k = distL; k < distR; k++)
+            {
+                map[distD][k] = num;
+                num++; 
+            }
+            for(int l = distD; l > distU; l--)
+            {
+                map[l][distR] = num;
+                num++;
+            }
+            TOPLINE: for(int g = distR ; g >= distL + 1 ; g-- ){
 
-        for(int i = 0; i < distR; i++)
-        {
-            map[i][distU] = num;
-            num++; 
-        }
-        for(int k = 0; k < distR; k++)
-        {
-            map[distD][k] = num;
-            num++; 
-        }
-        for(int l = 0; l > distD; l++)
-        {
-           //map
-        }
+            map[distU][g] = num; 
+            num++;
+            if(map[distU][g] == map[distU][distL + 1])
+            {
+                break TOPLINE;          
+            }
+            continue TOPLINE; 
+            }
+            distD--; 
+            distU++; 
+            distR--;
+            distL++; 
+        }while(num != Math.pow(spiral,2) );
+        map[middle][middle + 1] = (int)Math.pow(spiral,2);
+        //nested for loop
+    }
+    public void traverseOddSpiral()
+    { 
+        int middle = spiral / 2; 
+        int num = 1; 
+        distL = 0;
+        distR = spiral - 1;
+        distU = 0;
+        distD = spiral - 1;
+        map = new int [spiral][spiral];
+        
+        do{
+            for(int i = distU; i < distD; i++)
+            {
+                map[i][distL] = num;
+                num++; 
+            }
+            for(int k = distL; k < distR; k++)
+            {
+                map[distD][k] = num;
+                num++; 
+            }
+            for(int l = distD; l > distU; l--)
+            {
+                map[l][distR] = num;
+                num++;
+            }
+            TOPLINE: for(int g = distR ; g >= distL + 1 ; g-- ){
 
+            map[distU][g] = num; 
+            num++;
+            if(map[distU][g] == map[distU][distL + 1])
+            {
+                break TOPLINE;          
+            }
+            continue TOPLINE; 
+            }
+            distD--; 
+            distU++; 
+            distR--;
+            distL++; 
+        }while(num != Math.pow(spiral,2) );
+        map[middle][middle] = (int)Math.pow(spiral,2);
     }
             
             
