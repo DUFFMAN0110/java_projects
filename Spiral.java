@@ -11,7 +11,6 @@ public class Spiral
     private int distU; // gonna start on the top/ y coordinate, ++ not -- until it equals spiral / 2
     private int distD; // gonna start on the bottom/ y coordinate down, -- not ++ until it equals / 2
     // once distU or distD == dist R or distL then end the coded
-    private int j = distR;
 
     public Spiral(int s)
     {
@@ -43,23 +42,29 @@ public class Spiral
                 map[l][distR] = num;
                 num++;
             }
-            TOPLINE: for(int g = distR ; g >= distL + 1 ; g-- ){
+            for(int g = distR ; g > distL ; g-- ){
 
             map[distU][g] = num; 
             num++;
-            if(map[distU][g] == map[distU][distL + 1])
+            }
+            if(distD != (spiral/2) -1)
             {
-                break TOPLINE;          
+                distD--; 
             }
-            continue TOPLINE; 
+            else{
+                distD = spiral/2 - 1; 
             }
-            distD--; 
             distU++; 
             distR--;
-            distL++; 
-        }while(num != Math.pow(spiral,2) );
-        map[middle][middle + 1] = (int)Math.pow(spiral,2);
-        //nested for loop
+            if(distL != spiral - 2)
+            {
+                distL++; 
+            }
+            else{
+                distL = spiral/2;
+            }
+        }while(map[distD][distL] != Math.pow(spiral,2) );
+        //nested for loop*/
     }
     public void traverseOddSpiral()
     { 
@@ -87,15 +92,10 @@ public class Spiral
                 map[l][distR] = num;
                 num++;
             }
-            TOPLINE: for(int g = distR ; g >= distL + 1 ; g-- ){
+            for(int g = distR ; g >= distL + 1 ; g-- ){
 
             map[distU][g] = num; 
             num++;
-            if(map[distU][g] == map[distU][distL + 1])
-            {
-                break TOPLINE;          
-            }
-            continue TOPLINE; 
             }
             distD--; 
             distU++; 
@@ -115,7 +115,8 @@ public class Spiral
         {
             traverseEvenSpiral(); 
         }
-        traverseOddSpiral(); 
+        else{
+            traverseOddSpiral();} 
         for(int[] row: map)
         {
             for(int num:row )
