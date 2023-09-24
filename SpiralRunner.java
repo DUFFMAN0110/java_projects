@@ -1,13 +1,24 @@
 import static java.lang.System.*; 
-import java.util.Arrays; 
+import java.util.Scanner;
+
+
 
 public class SpiralRunner 
 {
     public static void main ( String [] args )
     {
-       Spiral spin = new Spiral(10); 
-       out.print(spin); 
-    
+        
+        try (Scanner kb = new Scanner(System.in)) {
+            out.print("Enter a number:: ");
+            int spiral = kb.nextInt();
+            Spiral spin = new Spiral(spiral); 
+            out.print("\n\n" + spin); 
+
+        out.print("Enter a new number:: ");
+        spiral = kb.nextInt();
+        spin = new Spiral(spiral);
+        out.print("\n\n" + spin);
+        } 
     }
 }
 
