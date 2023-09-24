@@ -4,7 +4,7 @@
 public class Spiral 
 {
     private String str = ""; 
-    private int spiral; 
+    private static int spiral; 
     private int[][] map;
     private int distL; // gonna start on the left side, ++ not --
     private int distR; // gonna star on the right side, (spiral - 1) --
@@ -104,11 +104,6 @@ public class Spiral
         }while(num != Math.pow(spiral,2) );
         map[middle][middle] = (int)Math.pow(spiral,2);
     }
-            
-            
-            
-    
-
     public String toString()
     { 
         if(spiral % 2 == 0)
@@ -121,7 +116,7 @@ public class Spiral
         {
             for(int num:row )
             {
-                str += num + " "; 
+                str += num + "\t"; 
             }
             str += "\n"; 
         }
