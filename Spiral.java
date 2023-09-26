@@ -16,10 +16,10 @@ public class Spiral
     {
         spiral = s; 
     }
+
     public void traverseEvenSpiral()
-    {
-        int middle = spiral / 2; 
-        int num = 1; 
+    { 
+       int num = 1; 
         distL = 0;
         distR = spiral - 1;
         distU = 0;
@@ -64,7 +64,6 @@ public class Spiral
                 distL = spiral/2;
             }
         }while(map[distD][distL] != Math.pow(spiral,2) );
-        //nested for loop*/
     }
     public void traverseOddSpiral()
     { 
