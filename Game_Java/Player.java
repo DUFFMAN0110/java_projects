@@ -1,12 +1,15 @@
 package Game_Java;
-import static java.util.Scanner.*; 
+import static java.util.Scanner.*;
+
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent; 
 import static java.lang.System.*; 
 /*
  * imports go here
  * 
  * 
  * Move a 1 in an array of 0s through arrow key inputs 
- * ( for now through 1, 2, 3, 4 as inputs for direction )
+ * ( for now  1, 2, 3, 4 as inputs for direction )
  * 
  */
 
@@ -29,11 +32,14 @@ public class Player {
         size = s; 
         gamePlace = new int[size][size]; 
     }
+
     public void setMove(int m){
         Scanner kb = new Scanner(System.in); 
-        move = m; 
+        move = m;
+        int startX = x;
+        int startY = y;
+        try{
         if(move == 1){
-            //gamePlace[y][x] = 0;
             x--; 
             gamePlace[y][x] = character; 
             //left
@@ -58,9 +64,17 @@ public class Player {
             m = kb.nextInt(); 
             setMove(m);
         }
+    }catch(ArrayIndexOutOfBoundsException e){
+        out.print("HEY!\nYou can't go there.\nPick a different direction.\n"); 
+        x = startX; 
+        y = startY; 
+        gamePlace[y][x] = character; 
     }
-    public void gameBoard(){
 
+    
+}
+
+    public void gameBoard(){
         box = 0;
         str = "";
         for(int j = 0; j < size; j++){
@@ -69,8 +83,7 @@ public class Player {
                 gamePlace[j][k] = box; 
                 if(j == y && k == x ){
                     box = character;
-                    gamePlace[j][k] = box;
-                    //gamePlace[j][k] = box; 
+                    gamePlace[j][k] = box; 
                 }
                 str += box + " ";
             }
@@ -79,10 +92,44 @@ public class Player {
 
 
     }
+    public void keepMoving(){
+        Scanner kb = new Scanner(System.in); 
+        out.print("Do you want to keep moving? || yes(1)/no(0) ");
+            int yn = kb.nextInt();  
+            if(yn == 1){
+                toggle = true;  
+            }
+            else if(yn == 0){
+                toggle = false; 
+            }
+            while(yn != 0 && yn != 1){
+                out.print("That isn't a choice dude. Try again :: "); 
+                yn = kb.nextInt();
+            }
+    }
+    public void goGame(){
+        Scanner kb = new Scanner(System.in);
+        while(toggle){
+            
+            out.print("Choose a direction || left(1) up(2) right(3) down(4) || :: "); 
+            int m = kb.nextInt();
+            Player.clearScreen(); 
+            setMove(m); 
+            out.print(toString());  
+            keepMoving();
+        }
+    }
+
     public String toString(){
-        //setMove(move); 
         gameBoard();
         return str; 
     }
 
+    public static void clearScreen()
+    {
+        out.print("\033[H\033[2J");
+        out.flush();
+    }
+
+    
 }
