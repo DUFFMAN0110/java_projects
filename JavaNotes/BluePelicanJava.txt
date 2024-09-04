@@ -1,0 +1,743 @@
+Notes of Concepts::
+    Simple println and such::
+            Comments ->-> you can comment lines or place 'remarks' anywhere in a program to add in notes and such 
+                // ->-> these are single line comments
+                /* */ ->-> these are multiple line comments
+            System.out.print("") is how you print out code 
+                this prints out whatever is in the parenthesis right next to each other without going to a new line
+            System.out.println("") is how you print out code
+                this prints out whatever is in the parenthesis and then puts the 'cursor' on the next line (like you're pressing enter)
+            Declaring and Initializing::
+                declaring ->-> says the type being stored and the reference to be able to call what's being stored like double x; 
+                initializing ->-> points the variable reference to specific data like x = 1.6; 
+            The assignment operator is = ->-> this is used to "assign" a value to a variable/reference
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Variables (Types_Rules & All)::
+        **cammelCase naming conventions are traditionally the way to go**
+        Variable names must begin with a letter or underscore char and they can't contain spaces within the names
+            variable names cannot have numbers, any punctuation, nor be a java KeyWords
+       
+        String - used to store things in quotes "" 
+        
+        int - used to store integers (positive or negative)
+       
+        double - used to store "floating point" numbers (decimal fractions) | double means double precision (better than float) 
+        
+        long - used to store long values (integers on a larger scale)
+        
+        float  - used to store "floating point" numbers (smaller than doubles)
+       
+        byte - used to store bytes (numbers between -128 & 127)
+        
+        char - used to store single characters (usually stored in single quotes '') 
+    
+     ** to separate numbers without changing how the number prints you can use _ to do commas like 1_000**
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Simple String Operations::
+        Concatenation::
+            to combine strings together use the + sign. 
+        .length() ->-> a method of the String class that gets the length of the string
+            "Hello".length() would give you 5
+        .substring(int) || .substring(int,int) ->-> a method of the String class that gives you the letters between two numbers
+             or from one number until the end of the string (inclusive,exclusive)
+             returns an IndexOutOfBounds Exception if one of the numbers are out of the range of the string
+        .toLowerCase() ->-> converts all characters to lower case
+        .toUpperCase() ->-> converts all characters to upper case
+        .equalsIgnoreCase(String) ->-> will check if the contents of the two strings are the same(case INsensitive)
+        .equals() ->-> will check if the contents of the two strings (case sensitive)
+                **inherits from the Objects class and can be overriden**
+        Numbers & String Concatenation ->-> if you have a 5 + "5" the outcome is 55
+            if you have "5" + 7 + 3 the outcome is 573, if you have 7 + 3 + "5" the outcome is 105
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Using Numeric variables::
+        Multiple declarations ->-> to declare multiple variables you first put the data type then the references like int l,y,z
+         to declare and initialize multiple variables you write it double 
+        Arthimetic operations ->-> +(addition), -(subtraction), *(multiplication), /(division), % (modulus), ^(exponent sometimes)
+            goes in order of PEMDAS
+        Increment & Decremenet ->-> x++ is the same as x = x + 1 same with x--
+            can be ++x or x++ | if the ++ is after the reference (x++) then it will increment/decrement AFTER being used in the statement
+                if the ++ is before the reference (++x) then it will increment/decrement BEFORE being used in the statement
+        Compound Operators ->-> += -= *= /= %= all are the equivalent of x = x + someNumber
+        Integer Division ->-> when dividing an integer by another integer that doesn't perfectly fit into each other,
+                            the result will be the amount that fits so 5 / 2 would be 2
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Size of data types::
+              DATA TYPE   SIZE    PRIMITIVE/REFERENCE         VALUE
+              boolean     1 bit        primitive           true or false
+              byte        1 byte       primitive           -128 to 127
+              short       2 bytes      primitive          -32,768 to 32,767
+              int         4 bytes      primitive          -2 billion to 2 billion
+              long        8 bytes      primitive          -9 quintillion to 9 quintillion
+              float       4 bytes      primitive          fractional number up to 6-7 digits
+              double      8 bytes      primitive          fractoinal number up to 15 digits
+              char        2 bytes      primitive          single character/letter/ASCII value
+              String      varies       reference          a sequence of chars
+ 
+ 
+ 
+        Primitive            vs              Reference::
+        8 types                            unlimited (user defined)
+        stores data                        stores an address
+        can only hold 1 value              could hold more than 1 value
+        less memory                        more memory
+        fast                               slower
+    ----------------------------------------------------------------------------------------------------------------------------------------------------   
+    Mixed Data Types::
+        ***Java does NOT like to lose data***
+        Ex) of losing info ->-> double d = 29.7 \n int i = d 
+            (can't do this because an int can't hold a double[bigger data type])
+        Ex) of NOT losing info ->-> int i = (int)d; && int j = 105 \n 
+            double d = j; (you CAN do this because the double can hold the smaller numerical data type) 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Casting and Constants::
+        Casts ->-> it is never legal to do a cast that goes from the Parent to a child class
+            Ex.) Child c = new Parent() would result in a compile error 
+            ***NO DOWNCASTING *** 
+            ***CHILD can NEVER be the parent class but the parent CAN be the child class*** (Child)p is legal
+         For compound operaters (+= etc) there is an implied cast which is based on the type stored (the reference on the left) 
+            j += x would be j = (int)(j+x) if j is an int \
+        Constants ->-> variables that, once initialized, CANNOT be changed, 
+                the keyword 'final' is used to indicate a constant
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Math Class Methods::
+        Method               Signature                          Description
+        abs                int    abs(int x)                    Returns the absolute value of x
+        abs                double abs(double x)                 Returns the absolute value of x
+        pow                double pow(double b, double e)       Returns b to the power of e
+        sqrt               double sqrt(double x)                Returns the square root of x
+        ceil               double ceil(double x)                Returns next highest whole # from x
+        floor              double floor(double x)               Returns next lowest whole # from x
+        min                double min(double a, double b)       Returns the smaller # between a and b (double)
+        max                double max(double a, double b)       Returns the larger # between a and b  (double)
+        min                int    min(double a, double b)       Returns the smaller # between a and b (int)
+        max                int    max(int a, int b)             Returns the larger # between a and b  (int)
+        random             double random()                      Returns a random double (range: 0 <= r < 1)
+        round              long   round(double x)               Returns x rounded to the nearest whole #
+        PI                 double PI                            Returns 3.141592653589793
+        log                double log(double x)                 Returns log base e of x 
+        sin                double sin(double a)                 Returns the sine of angle a (a is in radians)   
+        cos                double cos(double a)                 Returns the cosine of angle a (a is in radians)
+        tan                double tan(double a)                 Returns the tangent of angle a (a is in radians) 
+        asin               double asin(double x)                Returns the arcsine of x (in range of -PI/2 to PI/2)
+        acos               double acos(double x)                Returns the arccosine of x (in range of 0 to PI)
+        atan               double atan(double x)                Returns the tangent of x (in range of -PI/2 to PI/2)
+        toDegrees          double toDegrees(double angRad)      Converts radians to degrees
+        toRadians          double toRadians(double angDeg)      Converts degrees to radians 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Scanner Class:: 
+         imports needed ->->-> java.io.*; java.util.*; 
+         Scanners can ONLY move forward, there is no going back 
+
+         Methods::
+            .next() ->->  Scans the next String/word and moves the cursor right in front of it
+            .nextLine() ->-> Scans the next line of characters and moves the cursor to the end of the line
+            .nextInt(); ->-> Scans for the next integer and moves the cursor in front of it
+            .nextDouble(); ->-> Scans for the next double and moves the cursor in front of it 
+            .nextByte() ->-> Scans for the next Byte and moves the cursor in front of it 
+            .findInLine(String) ->-> Scans for the String and then moves the cursor in front of it, if nothing is found, return null
+            .skip(String or regex) ->-> does the same thing as findInLine() except 
+                                    that whatever is attempting to be skipped must immediately follow the cursor
+                                        if the substring is not found then a NoSuchElementException is thrown
+            .findWithinHorizon(String or regex,intAmt) ->-> idenxtical to findInLine but the intAmt limits the amount in front it can search through
+                                                    to have a successful search, the String must be found in its entirety within the intAmt
+                                                    if the intAmt is zero, the search is allowed to continue to the end of the text if necessary
+            
+           ** only moves the cursor if it exists ** 
+     ***** When using a single Scanner object the methods can be used in any order except for 
+                    you CANNOT follow a nextInt() or nextDouble() with nextLine() ******
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Boolean Type and Operators::
+        && ->-> means AND so if x + y == 4 && z + y == 4 then its true 
+            if this is true && this is true then the result is true otherwise it's false
+        || ->-> means OR so if x +y == 3 || z + y == 12 then it is true 
+            if this is false || this is true then the result is true
+            if this is true || this is true then the result is true
+            otherwise false 
+        ^  ->-> means XOR so this only results in true 
+                if the things being compared are opposites true^false is true
+        ! ->-> means NOT which means it changes the answer to the opposite so !true results as false
+        == ->-> is a comparator checking if one thing is equal to another (checks )
+        Order of Precedence(highest to lowest | left to right)::
+            !   ==   !=   &&   || 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Conditionals::
+
+        "if" statements::   
+            No Braces ->-> if there is only one line of code there does not need to be braces, 
+                this applies for the if and else parts 
+                    ex.) if(gD = 37) gD++; 
+                         out.print("help"); //this always happens 
+                    ex.) if(gD = 37) 
+                            gD++;
+                         out.print("help"); //this always happens 
+            Shell of if-else statement ->-> if(boolean){
+                                                code; 
+                                            }else 
+                                                code
+            Shell of else if statement ->-> if(boolean){
+                                                code; 
+                                            }else if(boolean){
+                                                code; 
+                                            } 
+        switch cases::
+            The default key word ->-> default is a 'case' that will happen in the event that no other case is true
+            The break key word ->-> break is used to get out of the switch case, 
+                            normally used to get out of the switch case once the appropriate case is found 
+                        in the event that the break is left out, once the first case is found, it'll also do the code in every preceding case as well
+            Shell of the switch case ->-> switch(choice) // this is normmaly an integer but can also be a char
+                                          {
+                                          case 1: 
+                                            code code code
+                                            break; 
+                                          case 2: 
+                                            code code code
+                                            break; 
+                                          default:
+                                            code code code
+                                          }
+            Permissible types ->-> int , char, short, byte
+                    (these are allowed to be searched for in a switch case) 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Loops::
+     ***All loops can use the break and continue keywords***
+       **If there is only one line of code/ basic structure (like an if) then braces are not need** 
+        *Putting a semicolon after a loop condition will cause the loop to NOT loop and the code inside will be executed once* 
+        for loops::
+            ***Loops go while the stop condition is true***
+            Shell of a for loop ->-> for(start; stop; increment/decrement){
+                                        code code code
+                                    }
+            Allowed to do in a for loop ->-> there can be multiple starts and multiple increments
+        for-each loops::
+            ***Think of for each loops like this -->> for each variable inside my container do the code***
+            Shell of a for each loop ->-> for(variable : container){
+                                            code code code
+                                            }
+            ->-> this type of loop is " read-only " with regard to the type held in an array
+                 ->_> since this loop is read only with regard to the type, it'll compile and run but does nothing
+                      rather, making a direct reference to the array in the loop WOULD BE capable of changing the array
+                      ie.) String str[] = {"one" , "two", "three"}
+                      for(String ss: str)
+                      {ss = "zero"} // this does nothing; 
+        while loops:: 
+            ***While loops check the condition then does the code and goes until the condition is false***
+            No Braces ->-> if a while loop has no brace then only the very next line of code(or structure) is repeated
+            Shell of a while loop ->-> while(condition){
+                                         code code code
+                                       }
+        do-while loops::
+            ***do-while loops do the code in the loop then checks the condition***
+            Shell of a do-while loop ->-> do{
+                                            code code code 
+                                            }while(condition);
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    ASCII & chars::
+        Big NO no's ->-> char and String types CANNOT be stored into each other 
+                        ex.) char ch = aString;
+                        ex.) char ch = "a";
+                         [and vice versa]
+                ints CANNOT be stored into chars
+                        ex.) char ch = j; //with the assumption j is an int
+            This is illegal because chars can take on two bytes while ints go over 2 billion bits (8 bytes) 
+        Something OK ->-> you can add together (and subtract) chars and ints
+                          ex.) int y = ch + j; 
+                    you can also store char into int data types
+                          ex.) int z = ch; 
+        ASCII TABLE ->->
+         **TO convert Captial letters to lower case letters add 32**
+            [subtract 32 from lowercase letters to get uppercase letters]
+                Numbers ASCII       Captial letters ASCII       Lowercase letters ASCII
+                0    --    48       A        --        65       a         --         97
+                    ....                    ....                         ....
+                9    --    57       Z        --        90       z         --        122
+        Methods of Character Class::
+            .isDigit(char); ->-> checks if a the input char is a digit, returns a boolean 
+            .isLetter(char); ->-> checks if a the input char is a letter, returns a boolean 
+            .isLetterOrDigit(char); ->-> checks if a the input char is a letter or digit, returns a boolean  
+            .isWhitespace(char); ->-> checks if the input char is whitespace, returns a boolean 
+            .isLowerCase(char); ->-> checks if the input char is lowercase, returns a boolean 
+            .isUpperCase(char); ->-> checks if the input char is uppercase, returns a boolean 
+            .toLowerCase(char); ->-> changes the input char to a lowercase char
+            .toUpperCase(char); ->-> changes the input char to an uppercase char
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Numerical Conversions::
+        **To convert to decimal remember that it works by exponents**
+        Ex.) 1101 in base 2 is (from left to right) 
+     1 * 2 to the power 3 + 1 * 2 to the power of 2 + 0 * 2 to the power of 1 + 1 * 2 to the power of 0
+        Decimal::
+            ->-> There are only 10 digits in this system ->-> 0 1 2 3 4 5 6 7 8 9
+            ->-> This is what 
+        Binary::
+           ->-> There are only 2 digits in this system ->-> 0 1
+           ->-> each position of a binary number is a bit (1101base 2)
+                every 4 bits is 1 byte
+           Storing a binary number ->-> the number needs to be preceded by 0b
+                                        ex.) int x = 0b100110; 
+           Converting an integer to a binary String ->-> you would use the Integer Class's .toBinaryString(int variable) 
+                                                or .toString(int variable, 2)
+        Hex::
+            There are only 16 digits in this system ->-> 0 1 2 3 4 5 6 7 8 9  A  B  C  D  E  F
+                                                                             10  11 12 13 14 15
+            Storing a hex number ->-> the number needs to be preceded by an 0x
+                                      ex.) int x = 0x4CB3;
+            Converting an integer to a hex String ->-> you would use the Integer Class's .toHexString(int variable) 
+                                                or .toString(int variable, 16)
+        Octal::                                     
+            ->-> There are only 8 digits in this system ->-> 0 1 2 3 4 5 6 7 
+            Storing an octal number ->-> the number needs to be preceded by 0
+                                         ex.) int x = 0734; 
+            Converting an integer to a octal String ->-> you would use the Integer Class's .toOctalString(int variable) 
+                                                or .toString(int variable, 8)
+     The Integer Class's .parseInt("number string", base) // this would return the number string in a decimal base
+     ***Trick for conversions:::: starting on the right, put binary in groups of 4 to convert to hex 
+                                  put binary in groups of 3 for base***
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Classes and Objects::
+        ->-> Classes can contain many objects 
+        Constructor ->-> all classes have a default constructor that is the Class's name with parenthesis next to it        
+                         ex.) class Circle{
+                                Circle(){
+                                    code
+                                }
+                              }
+                        the constructor should set the variables 
+                        if there are other constructors present, the default constructor must be present
+        Method ->-> methods perform some action
+            ->->You can create methods without needing to specify scope (private, public,package)
+            ->->You are able to print out a data type completely different from the one required to be passed into the method in a void method
+            ->->Return methods require a data type to return, the method data type and the return type must match or ERROR
+                    must be correct data type for the parameters of the created method, as the used one
+            ->-> A constructor is a special method that is called when an object is instantiated (created)
+            .equals(obj) vs == ->-> .equals(obj) compares contents of references while == compares if they are the same obj
+                (you can also use .compareTo(obj) works similar to .equals(obj))
+        State variables ->-> numerical variables get automatically initialized to 0
+                             you are allowed to either only declare the state variable or initialize as well
+                                local variables (and variables in the body of a method) are NOT automatically initialized
+                                     and will result in a compile error if it is not initialized    
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Adv. String Methods:: 
+        .compareTo(obj) ->->
+                ex.) int j = s.compareTo("coat"); 
+                ->-> if s alphabetically precedes "coat" then it returns a negative int. 
+                ->-> if s alphabetically comes after "coat" it returns a positive int
+                ->-> if s is alphabetically equal to "coat" then it returns zero
+        .indexOf(char) ->-> returns the index(int) of the char, 
+                    if the char doesn't exist in what it is searching it returns -1
+                    there is also .indexOf(char, FromIndex) which starts searching for a character from the inputted index.
+                    -- there are 6 different indexOf() methods
+                        -> .indexOf(String) ->_> searches from left to right for the first occurrence of a String
+                        -> .indexOf(String, FromIndex) ->_> Starting at FromIndex, searches from left to right for the first occurrence of String
+                        -> .indexOf(char) ->_> searches from left to right for the first occurence of the char
+                        -> .indexOf(char, FromIndex) ->_> starting at the FromIndex, searches from left to right for the first occurrence of char
+                        -> .indexOf(ascii) ->_> searches from left to right for the first occurrence of the ascii (char but in number form)
+                        -> .indexOf(ascii,FromIndex) ->_> Starting at the FromIndex, searches from left to right for the first occurrence of the ascii (char but in number form)
+                                    ex.) word = "hello"; word.indexOf(h) would be 0
+                                                    word.indexOf(e,3) = -1;  
+        .lastIndexOf(char) ->-> returns the index of the char starting to search from right to left.
+                        has all the same 6 different versions of itself like the .indexOf() method
+        .replace(oldChar,newChar) ->-> replaces ALL occurrences of the oldChar with the newChar
+        .replace(oldStr,newStr) ->-> replaces ALL occurrences of the oldStr with the newStr       
+        .trim() ->-> removes whitespace from both ends of the String while leaving the interior whitespace intact(whitespace is \n \t and spaces)
+        .contains(String) ->-> returns true when this string contains String, otherwise false
+        .startsWith(String) ->-> returns true when this string contains String as its leading substring 
+        .toCharArray(); ->-> makes the String calling the method into a char array; returns a char array (needs to be stored in a char[]); 
+        String.copyValueOf(char[]) ->-> makes the char array into a String; 
+                                    ->_> String.valueOf(char[]) does the same thing; 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Scanners w/ Strings  ::
+        Delimiters ->-> series of characters that separates the text presented in the Scanner into separate tokens.
+                    .useDelimiter(String or regex) -> allows a custom delimiter to be set using regex (regular expressions)  
+        If two delimiters are immediately adjacent to each other, resulting in the amount of blank lines in between the delimiters
+                ex.) String ss = "abcxyxydef"'
+                     Scanner sc = new Scanner(ss);
+                     sc.useDelimiter("xy"); 
+                     while(sc.hasNext()){
+                        System.out.println(sc.next()); 
+                     }
+                     output would be :
+                        abc
+
+                        def
+        ->-> Setting the .useDelimiter("") to just "" makes every character a token
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Arrays & Array Concepts::
+        ->-> there are two ways to declare an array ->_> 
+                            int[]a; 
+                            int a[]; 
+        ->-> There are 3 ways to declare and initialize an array ->_>
+             First way ->-> int[] a = new int[size] // this part is the declaration
+                            a[0] = 0; //this part is the initializing
+                            a[1] = 1; 
+                            ...
+             Second way ->-> int a[] = {0,1,...}
+             Third way ->-> int[] a = new int[] {0,1,...}
+        .length ->-> gets the length of the array
+        Parallel arrays ->-> when two different arrays are associated with each other, the are called parallel arrays
+        ->-> Example of passing an array to a method
+                char[4]  = 'g'; 
+                double 3 = 2.718; 
+
+                method1(e,ch);
+                public void method1(double xxx, char myArray[]){
+                        xxx = 0; 
+                        myArray[4] = 'V'; 
+                }
+
+                System.out.println( ch[4] ) // the char at index 4 is now changed to 'V'; 
+                System.out.println( e ); // the e is unchanged 
+            a. changing xxx in method1 does NOT affect the e value back in the calling code
+            b. Notice that changing myArray[4] in method1 DOES change ch[4] back in the calling code
+        ->-> Numeric arrays like int[] and double[] have all elements automatically initialized to 0;
+        ->-> char arrays are automatically initialized to "", empty space
+        ->-> Strings and other object arrays are automatically initialized to null, [null, null, null]
+        ->-> boolean arrays are automatically initialized to false; 
+        ->-> using the split(regex) method, you can produce an array split up by a particular string or regex
+                    ex.) String s = "Hello again", sp[]; 
+                         sp = s.split("a") // this splits s by any a's it has and places each element resolved into sp
+                                           // this would look like sp[0] = "Hello ", sp[1] = "g", sp[2] = "in", 
+                                                            what is being split by is NOT included in the array
+                         sp = s.split("\\s"); // "\\s" means whitespace, \\s+ means one or more white space characters
+                         sp = s.split("e|g"); // "e|g" means EITHER 'e' or 'g' is going to be what is being split by
+        ->-> you can use the split method to count the number of occurrences of a particular regex, being sp.length-1
+                            if and only if the regex is not at the end of the string being split
+        ->-> if the array is only DECLARED, ie) double mxz[]; // no size or numbers;, 
+                and you try to call something that doesn't exist like mxz[2] = 19.1, you'll get a NullPointerException
+        ->-> having an array reference that points to another array reference will change both arrays (they're pointing at the same thing)
+                    ex.) int[] fist = {1,2,3,4,5} // declared and initialized
+                         int sec[];
+                         sec = first; //second reference points to original array
+                         sec[2] = 99; // changes the 2nd index of sec to 99; 
+                         System.out.println(first[2]) // this gets you 99 as changin sec changes first. 
+        ->-> declaring multiple arrays on the same line requires precise placement of []; 
+                int [] x,y; // Both x and y are arrays; 
+                int x[], y; // only x is an array, y is just an int; 
+        ->-> to remove an array from memory, set it and all its values to null,
+                    ex.) int myArray[] = new int[500]; // occupies 500 * 4 bytes of memory
+                         myArray = null;   // occupies almost no memory
+                         myArray[45] = 2003; // generates a NullPointerException
+                ->_> TAKE AWAY HERE ** you can set any object equal to null
+        ->-> copying from an array to an array requires Systemarraycopy(fromArray,fromIndex, toArray, toIndex, howMany); 
+                fromArray ->_> the array from which we are copying, og sourceforge
+                fromIndex ->_> the index in fromArray from whcih copying starts
+                toArray ->_> the array to which we will copy, destination
+                toIndex ->_> the index in the toArray at which copying starts 
+                howMany ->_> the # of elements to copy
+             ->_> you will get an ArrayIndexOutOfBoundsException if the toIndex is an int that is larger than the length of the toArray
+                  as well as get the same exception if the amount you're copying onto the toArray is greater than the index from the toIndex
+        ->-> to convert a String into a char array you do char ch; String s = "ABCDEF"; ch = s.toCharArray(); 
+        Logical size vs Physical size ->-> the logical size of the array is how much of the array is actually used
+                                           the physical size of the array is the .length of the array, how much it can store
+        ->-> you can use an array variable as an index (depending on its type) 
+             ie.) int ary[] = {5,6,7,8,9,10}
+                  System.out.println(ary[ ary[0] ]) // prints 10
+        iiuihhoh
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Arrays Class::
+        import java.util.Arrays;
+        Methods::
+            Arrays.sort(array[]) ->-> sorts the passed in array from least to greatest
+            Arrays.binarySearch(array[], int key) ->-> returns the index of the LAST array element containing the value of key
+                                                  if the key is NOT found, a negative number is returned 
+                                                  which is the index before the key would be inserted - 1 (-kIndex - 1)
+            Arrays.equals(array1[], array2[]) ->-> returns true if the elements of array1 is equal to array2
+            Arrays.fill(array[], value) ->-> fills the array with the value, make sure what can be stored matches what's attempting to be stored
+            Arrays.toString(array[]) ->-> converts an array into a string
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Static Methods & State Variables::
+        ->-> Static methods are methods that allow you to access it without making an object
+                ie.) if you had an object/ file called Nums.java
+                     instead of doing Nums name = new Nums();         // we're assuming it has a private int amount = 0; 
+                                      System.out.println(name.amount);
+                     you would do System.out.println(Nums.amount);
+        ***PAY ATTENTION*** ->-> whenever you make objects of something and access the static instance variables, they all change
+                            ie.) Change obj = new Change(); 
+                                 Change.x = 70; 
+                                 System.out.print(obj.x) // would print 70; 
+                                 obj.x = 69;
+                                 obj.x = 5; 
+                                 System.out.println(Change.x) // would print 5
+        ->-> the sequence of your access modifier ie.) public, private, package, and static can be reversed
+             ie.) public static int k; == static public int k; (this is not normally used but CAN happen)
+        ->-> Constants (variables with the final keyword) can also be static
+             ->_> the final must come after the static/access modifier depending on how you write it  
+                ie.) public static final double PI = 3.1415926535
+                     static public final double PI = 3.1415926535
+        ->-> to use sqrt(x) of the Math class or out.println() without the System portion, you need to make a static import
+             ie.) import static java.lang.Math.*;    // makes it to where you can call a Math method without doing Math.method(); 
+                  import static java.lang.System.out; // makes it to where you can do out.println(); 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Wrapper Classes::
+        ->-> Wrapper Classes are the "big" version of primitive data types
+            ->_> there is Integer, Double, Float, Character, Boolean, Short, Long
+        ->-> 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Files::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Bitwise Operators::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Random Numbers::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    StringBuffer Class::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Boolean Algebra and DeMorgans's Theorem::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Selection Operator::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Passing by Value and by Reference::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Two-Dimensional Arrays::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Inheritance::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Exceptions::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Interfaces::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Complexity Analysis (Big O)::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Recursion::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Sorting Routines::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    List Interface::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    ArrayList::
+        ArrayList::
+            Elements can be added and removed after compilation phase, stores reference data types, resizable/mutable
+            ArrayList<T>
+            T is a generic class, has to be the Wrapper class/ an object
+            
+            ArrayList<Integer> numbers = new ArrayList<Integer>(); 
+        2D ArrayLists :: 
+            a list of lists
+            ArrayList<ArrayList<String>> reference = new ArrayList(); 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Iterator/ListIterator::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Comparable/Comparator::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Sets::
+        Methods for Sets:: 
+            
+                .add(element) - adds element to the set at next available index
+                .size() gets the length/ size of the set
+                .remove(element) removes all of a specific value from your set
+                .contains(element) returns a boolean
+                .clear() clears a list of all items in the set
+                .isEmpty() returns a boolean, true if the set is empty and false if the set has items in it
+
+        Sets when discussing Integers::
+        
+            Sets and lists are from the Collection interface
+            LinkedHash sets do not order the what is inside the set at all
+            Hash sets go by numerical value for ordering numbers 
+            Tree sets go by literal value for ordering numbers,
+            then whichever of the alphabet that comes first (A or a whichever is added first comes first)
+            then by symbols 
+    
+        Sets when discussing Strings:: 
+        
+            HashSets order by the hash code of the string
+            LinkedHash Sets get printed in the order they were added
+            Tree Sets order by tree data structure (smallest ascii # to largest)
+       
+        HashSet::
+
+        TreeSet::
+
+        LinkedHashSet:: 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Maps::
+        **You cannot have two of the same keys for a map but you can have the same element with accessed through different keys**
+        *When printing map.get(element) and that element doesn't exist, it prints out "null" *
+        - The values are treated as objects
+        - All orders by the key and not the value stored with the key
+            Methods for Maps::
+                .put(key,element) - associates a specific element with a specific key
+                .get(key) - gets the element associated with the key
+                .containsValue(element) - returns true or false depending on if the map contains that element
+                .containsKey(key) - returns true or false depending on if the map contains that key
+                .values() - returns all the values of the map
+                .clear() - clears the map of all keys and elements
+                .remove() - removes the element associated with the key from the map
+
+      HashMaps:
+             - does not return in order, prints in order of smallest HashCode to largest
+             - orders by the key's smallest HashCode to largest
+             - Sort of the same ordering as Hash Sets
+             - keys and elements do not have to have the same data types
+             - negative numbers have a smaller hashcode than their counterparts 
+                ie.) -10 is before 10 but they will always be right next to each other so
+                     {-2 = 7, 2 = 12, -11 = 1, 11 = 0}
+            
+      TreeMaps:
+             - prints in order of smallest ascii value to largest
+             - keys and elements have to have the same data type
+             - negative numbers are treated as their value 
+                ie.) -10 is smaller than -5 and will not be next to 10 nor 5
+            
+      LinkedHashMaps:
+             - prints in order they are "put"
+             - keys and elements do not have to have the same data types
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Flow Charts & Optimizing for Speed::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Linked Lists::
+
+        Singly Linked List::
+
+        Doubly Linked Lists::
+
+        Stacks::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Binary Search::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Binary Search Trees:: 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Queues::
+        Queues::
+
+        Priority Queues:: 
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Inner Classes::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Heaps::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Lookup Tables and Hashing::
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Important Explanations and KeyWords::
+    Key Words::
+        Final keyword::
+            void and final are interchangable in placement 
+            makes the method or stored value immutable after the first initialization and declaration of it. 
+            common practice is to make the variable name in all capital letters
+
+        Static keyword::
+                modifier. A single copy of a variable/method is created and shared.
+                    the class "owns" the static member
+                    if you create object from a class, they all share the static variable method
+                You can call static variables through direct usage of the class name 
+                        ie.) if you had a Friend class and a count variable you can do Friend.count
+                            instead of creating a Friend object to access count like:
+                                    Friend friendo = new Friend(); 
+                                    friendo.count; 
+
+        Super keyword::
+            keyword refers to the superclass (parent) of an object very similar to the "this" keyword (refers to the class) 
+                super refers to the object's parent class
+
+        This keyword::
+            when using this in terms of showing that the name put into a constructor is the same as the one inside of the constructor
+            do this.reference = differentReference
+            this can be used from objects to variables
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Escape Sequences::
+        \n ->-> makes a new line
+        \t ->-> tabs over 8 spaces (the next thing written after the tab will be placed on the 8th space)
+        \\ ->-> allows you to print one \
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Primitive Data Types::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    ASCII Codes::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Saving Text Files::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Text and Binary Files Explaned::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Two's Complement Notation::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Operator Precedence (Highest to lowest | top to bottom)::
+        Operator              Functions
+
+        ()                    Parenthesis
+        []                    Array subscript
+        .                     Object member Selection
+        ++                    Increment
+        --                    Decrement
+        +                     Unary plus sign. Unary operators only accept one operand
+        -                     Unary minus sign. (for, -2 means negative two)
+        !                     boolean NOT
+        ~                     bitwise NOT
+        (type)                Type cast, example: (int)
+
+        Arthimetic Operators 
+        *                     Multiplication
+        /                     Division 
+        %                     Modulus
+        +                     Addition or Concatenation
+        -                     Subtraction 
+        <<                    Bitwise shift left, preserve sign
+        >>                    Bitwise shift right, preserve sign
+        >>>                   Bitwise shift right, do not preserve sign
+
+        Comparison Operators 
+        <                     Less than 
+        <=                    Less than or equal to 
+        >                     Greater than
+        >=                    Greater than or equal to 
+        instanceOf            Class membership
+        ==                    Equal to 
+        !=                    Not equal to 
+
+        Boolean Operators     
+        &                     boolean AND without short-circuit if boolean arguments
+        &                     Bitwise And
+        ^                     Bitwise exclusive OR
+        |                     boolean OR without short-circuit if boolean arguments 
+        |                     Bitwise OR
+        &&                    boolean AND with short-circuit
+        ||                    boolean OR with short-circuit
+
+        Assignment Operators
+        ?:                    Ternary conditional (selection opertor)
+        =                     Assignment 
+        +=                    Addition and assignment
+        -=                    Subtraction and assignment
+        *=                    Multiplication and assignment 
+        /=                    Division and assignment
+        %=                    Modulo and assignment
+        <<=                   Shift left (preserve sign) and assign
+        >>=                   Shift right(preserve sign) and assign
+        >>>=                  Shift right(doo not preserve sign) and assign
+        &=                    boolean or bitwise AND and assignment
+        |=                    boolean or bitwise OR and assignment
+        ^=                    boolean or bitwise exclusive OR and assignment
+    ---------------------------------------------------------------------------- 
+    Creating Packages and Importing Classes::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Typical Contest Classes and Interfaces::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Exception Classes::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Interface Explanation::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Input from the Keyboard::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Viruses::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Enrichment Activities::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Computer Languages::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Binary Tree Terms::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Compiling and Executing w/o an IDE::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Kilobytes, Megabytes, Gigabytes::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    The DecimalFormat Class::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Matrix Mulitplication::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Monospaced Fonts::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Regular Expressions::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Formatter class specifiers and flags::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Generic Classes::
+    ----------------------------------------------------------------------------------------------------------------------------------------------------
+    Patter and Matcher classes::
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

@@ -1,192 +1,136 @@
 package Game_Java;
 
+import java.awt.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Scanner;
-import static java.lang.System.*; 
-public class Player2 extends Thread implements KeyListener{
 
-
-    private int box;
-    private String str;
-    private int size;
-    private int[][] gamePlace;
-    private int character = 1;
+public class Player2 extends JFrame implements KeyListener{
+    private int x; 
     private int y;
-    private int x;
-    //private int move;
-    private boolean[] keys = new boolean[6];
-    private boolean toggle; 
+    private boolean[] keys; 
+    private final int SIZE;
+    private JPanel player = new JPanel() {
 
 
-    public Player2(){}
+            @Override
+            public void paintComponent(Graphics g)
+            {
+                super.paintComponents(g);
 
-
-    public void setSize(int s){
-
-        size = s; 
-        gamePlace = new int[size][size]; 
-    }
-    public void gameBoard(){
-        box = 0;
-        str = "";
-        for(int j = 0; j < size; j++){
-            for(int k = 0; k < size; k++){
-                box = 0; 
-                gamePlace[j][k] = box; 
-                if(j == y && k == x ){
-                    box = character;
-                    gamePlace[j][k] = box;
-                    //gamePlace[j][k] = box; 
-                }
-                str += box + " ";
+                setBackground(Color.white);
+                g.setColor(Color.WHITE);
+                g.drawRect(x,y,SIZE, SIZE);
             }
-            str += "\n"; 
-        } 
+        }; 
+    private Rectangle rect = new Rectangle(x,y,50,50)
+    {
+
+    }; 
+    {
+        x = 50; 
+        y = 50; 
+        SIZE = 35;
     }
 
-    public void setMove(){
-        
-        int startX = x;
-        int startY = y;
-        try{
-        if(keys[0]){
-            //gamePlace[y][x] = 0;
-            x--; 
-            gamePlace[y][x] = character; 
-            //left
-        }
-        else if(keys[1]){
-            y--; 
-            gamePlace[y][x] = character; 
-            //up
-        }
-        else if(keys[2]){
-            x++; 
-            gamePlace[y][x] = character; 
-            //right
-        }
-        else if(keys[3]){
-            y++; 
-            gamePlace[y][x] = character; 
-            //down
-        }
-    }catch(ArrayIndexOutOfBoundsException e){
-        out.print("HEY!\nYou can't go there.\nPick a different direction.\n"); 
-        x = startX; 
-        y = startY; 
-        gamePlace[y][x] = character; 
-    }
-}
-public void goGame(){
-    Scanner kb = new Scanner(System.in);
-    while(toggle){
-        
-        out.print("Choose a direction || left(1) up(2) right(3) down(4) || :: "); 
-        //int m = kb.nextInt();
-        //Player.clearScreen(); 
-        setMove(); 
-        out.print(toString());  
-        out.print("Do you want to keep moving? || yes(1)/no(0) ");
-        int yn = kb.nextInt();  
-        if(yn == 1){
-            toggle = true;  
-        }
-        else if(yn == 0){
-            toggle = false; 
-        }
-        else if(yn != 0 && yn != 1){
-            out.print("That isn't a choice dude. Try again :: "); 
-            yn = kb.nextInt();
-        }
-        
-    }
-}
-    public void run() {
-        try
-		{
-            out.print(str); 
-			while(true)
-			{
-				Thread.currentThread().sleep(5);
-                
-			} 
-            
-		}catch(Exception e)
-		{
-		}
-    }
-
+    public Player2(){
+         
     
+
+        player.setBackground(Color.white);
+        player.setBounds(rect);
+
+        this.setTitle("MyGame");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(true);
+        this.setLayout(null); 
+        this.setSize(500,500);
+        this.getContentPane().setBackground(Color.black); 
+        this.setVisible(true); 
+
+        this.add(player); 
+
+        this.addKeyListener(this);
+        
+        
+
+    }
+    // public void paintComponent(){
+    //     if(keys[0]){
+    //         x--; 
+    //     }
+    //     if(keys[1]){
+    //         x++; 
+    //     }
+    //     if(keys[2]){
+    //         y--; 
+    //     }
+    //     if(keys[3]){
+    //         y++; 
+    //     }
+    // }
+    @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
-    
+    @Override
     public void keyPressed(KeyEvent e) {
+        // TODO Auto-generated method stub
+        try{
+        if((e.getKeyCode() == KeyEvent.VK_A && e.getKeyCode() == KeyEvent.VK_W) || 
+            (e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_UP)){
 
-        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A )
-		{
-			keys[0] = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_D )
-		{
-			keys[1] = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_W)
-		{
-			keys[2] = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S)
-		{
-			keys[3] = true;
-		}
-		/*if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_R)
-		{
-			keys[4] = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SHIFT || e.getKeyCode() == KeyEvent.VK_Q)
-		{
-			keys[5] = true;
-		}*/
+            x--;
+            y--; 
 
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_S && e.getKeyCode() == KeyEvent.VK_A 
+            || e.getKeyCode() == KeyEvent.VK_LEFT && e.getKeyCode() == KeyEvent.VK_DOWN){
+              x--;
+              y++;
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_W && e.getKeyCode() == KeyEvent.VK_D 
+            || e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_UP){
+            
+            y--; 
+            x++; 
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_S && e.getKeyCode() == KeyEvent.VK_D 
+            || e.getKeyCode() == KeyEvent.VK_RIGHT && e.getKeyCode() == KeyEvent.VK_DOWN){
+            y++; 
+            x++; 
+        }
+    }catch(Exception ec){
+        System.out.println("This is not working\n");
+    }finally{
+        System.out.println(e.getKeyCode());
     }
+}
 
-
+    @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A)
-		{
-			keys[0] = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_D)
-		{
-			keys[1] = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_W)
-		{
-			keys[2] = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S)
-		{
-			keys[3] = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_R)
-		{
-			keys[4] = false;
-		}
-		/*if (e.getKeyCode() == KeyEvent.VK_SHIFT || e.getKeyCode() == KeyEvent.VK_Q)
-		{
-			keys[5] = false;
-		}*/
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+        // if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT ){
+        //     keys[0] = false;  
+        // }
+        // if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT){
+        //     keys[1] = false;  
+        // }
+        // if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP){
+        //     keys[2] = false; 
+        // }
+        // if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN){
+        //     keys[3] = false; 
+        // }
+        System.out.println("Unimplemented method 'keyPressed'");
     }
-
-
-    public String toString(){
-        //setMove(move); 
-        gameBoard();
-        return str; 
-    }
-
 
 }
+    

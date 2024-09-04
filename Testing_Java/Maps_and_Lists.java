@@ -1,8 +1,6 @@
-package Testing_Java;
+ 
 
-
-
-import java.util.*;
+import java.util.*; 
 import static java.lang.System.*; 
 
 
@@ -85,7 +83,7 @@ public class Maps_and_Lists{
         arrlist.set(1,5);
         arrlist.subList(1,4); 
 
-        out.println("\n_______________________________________________\n\nThis is an ArrayList::\n\t"+arrlist+ "\n\nThis is a part of that list (subList)::\n\t");
+        out.print("\n_______________________________________________\n\nThis is an ArrayList::\n\t"+arrlist+ "\n\nThis is a part of that list (subList)::\n\t");
         out.println(arrlist.subList(1,4) ); 
         out.println("\n\n\n");
         
@@ -117,8 +115,8 @@ public class Maps_and_Lists{
         out.println("This prints true if the map contains the element '20', or false if it doesn't::\n\t"+linkedMap.containsValue(20));
         out.println("\nThis prints true if the map contains the key 'tim', or false if it doesn't::\n\t"+hashMap.containsKey("tim")); 
 
-        Map testMap = new HashMap(); 
-        String str = "Hello my name is Joseph and I am dumb";
+        Map testMap = new LinkedHashMap<>(); 
+        String str = "\"Hello my name is Joseph and I am dumb\"";
 
         out.println("\n"+str+"\n\nthis Map loop makes each letter a key and the amount of times it appears becomes the element ");
 
@@ -130,7 +128,7 @@ public class Maps_and_Lists{
                 testMap.put(x,1);
             }
         }
-        out.println(testMap);
+        out.println("\t"+testMap);
         out.println("\n_______________________________________________\n");
 
          

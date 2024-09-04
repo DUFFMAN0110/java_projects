@@ -1,4 +1,4 @@
-package Practice_Java;
+package Spiral_Java;
 import static java.lang.System.*; 
 import java.util.Scanner;
 

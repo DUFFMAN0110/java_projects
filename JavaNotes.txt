@@ -1,0 +1,1104 @@
+ Concepts::
+
+    Methods(concept):: 
+        You can create methods without needing to specify scope (private, public,package)
+        You are able to print out a data type completely different from the one required to be passed into the method in a void method
+        Return methods require a data type to return, the method data type and the return type must match or ERROR
+        must be correct data type for the parameters of the created method, as the used one
+        a constructor is a special method that is called when an object is instantiated (created)
+
+        **System.exit(0) exits the program**
+    
+    Copying objects::
+     To truly copy objects without having their memory addresses be the same,
+        you want to create either a method or a constructor that takes in an object 
+        (specifically the one you are normally creating) and then goes onto set values 
+        in the body of the method/constructor
+    
+    Polymorphism (concept)::
+        greek work for poly - "many", morph - "form"
+        The ability of an object to identify as more than one type
+        So if a class extends another, and
+        multiple classes are child class of the same parent class
+        then they can all be treated as the same type of object
+            ie.) Example extends Test
+                Helper extends Test
+                Student extends Test
+
+                These all can be treated as the object Test
+
+        Dynamic polymorphism::
+            dynamic = after compilation (during runtime)
+        Basically choosing what type of subclass to make the object
+        ie.) Animal (parent class)  Cat and Dog are subclasses of Animal
+
+                    Animal animal; 
+                    animal = new Cat(); 
+                    or I can do 
+                    animal = new Dog(); 
+    
+    Bounded Types::
+        you can create the objects of a generic class to have data of specific derived types 
+                                        ie.) Number
+        so now you can send in any reference data types that are the subclass of the parent class
+         Looks like >> public class MyGenericClass <T extends Number, V>{}
+
+    Multithreading::
+        the process of executing multiple threads simultaneously
+        It helps maximize the utilization of your CPU
+        Threads are independent, they don't affect the execution of other threads. 
+        An exception in one thread will not interrupt other threads
+        useful for serving multiple clients, multiplayer games, or other mutually independent tasks
+
+            you can put a Runnable instance as an argument in a newly created Thread object 
+                ie.) MyRunnable runnable1 = new MyRunnable(); 
+                     Thread thread2 = new Thread(runnable1);      
+
+ Overloading & Overriding::
+
+    Overloading Constructors/ Methods::
+        methods that share the same name but have different parameters
+        method name + parameters = method signature
+        if the amount of parameters change or the data type of the parameter changes, then the method is possible
+        when trying to grab variables in a different file that aren't declared in that file, it will print null 
+        ie) System.out.print(pizza.topping); == null\
+
+    Method Overriding::
+        Declaring a method in a subclass, which is already present in the parent class. 
+        This is done so that a child class can give its own implementation
+        -- Basically even if the parent class has the method, 
+            you can give the child class the same method with a different output-- 
+
+ Format Method (printf())::
+     an optional method to control, format, and display text to the console window 
+     two arguments - format string + (object/variable/value)
+     % [flags] [precision] [width] [conversion-character]
+     wherever the format specifier is (the %) that is where the (object/variable/value) will appear
+
+     [Conversion-characters]
+      %b : to display a boolean
+      %c : to display char
+      %s : to display String
+      %d : to display an int
+      %f : to display a float or double
+     
+     width sets the minimum number of characters to be written as output
+     [width]
+     %10 : displays 10 characters of the (object/variable/value)
+
+     precision sets the number of digits of precision when outputting floating-point values
+     [precision]
+     %f : displays a default of six decimal places
+     %.2f : displays 2 decimal places
+     %.#f : displays # amount of decimal places. 
+
+     flags add an effect to the output based on the type of flag added to format specifier
+     [flags]
+     - : left justifies 
+     + : outputs a plus ( + ) or minus ( - ) sign for a numeric value
+     0 : numeric values are zero-padded 
+     , : comma grouping separator if numbers > 1000
+
+ Size of data types::
+              DATA TYPE   SIZE    PRIMITIVE/REFERENCE         VALUE
+              boolean     1 bit        primitive           true or false
+              byte        1 byte       primitive           -128 to 127
+              short       2 bytes      primitive          -32,768 to 32,767
+              int         4 bytes      primitive          -2 billion to 2 billion
+              long        8 bytes      primitive          -9 quintillion to 9 quintillion
+              float       4 bytes      primitive          fractional number up to 6-7 digits
+              double      8 bytes      primitive          fractoinal number up to 15 digits
+              char        2 bytes      primitive          single character/letter/ASCII value
+              String      varies       reference          a sequence of chars
+ 
+ 
+ 
+    Primitive            vs              Reference::
+    8 types                            unlimited (user defined)
+    stores data                        stores an address
+    can only hold 1 value              could hold more than 1 value
+    less memory                        more memory
+    fast                               slower
+ 
+ Events and Listeners::
+    Action::
+        import java.awt.event.ActionEvent;
+        import javax.swing.AbstractAction; 
+
+    ActionEvent::
+        import java.awt.event.ActionEvent; 
+
+    ActionListener::
+        listens for some sort of action happening for whatever is 
+         adding the action listener
+
+        import java.awt.event.ActionListener;
+
+        ActionEvent Methods::
+            .getSource(); // I think returns a boolean of true or false 
+    
+    ChangeListener::
+        listens for a stateChanged(ChangeEvent obj)
+    
+    KeyListener::  
+        has 3 methods
+            - keyTyped(KeyEvent obj)
+                >> invoked when a key is typed. Uses KeyChar, char output
+                    KeyChar - literal char value (q key == 'q')
+            - keyPressed(KeyEvent obj)
+                >> invoked when a physical key is pressed down. Uses KeyCode, int output
+                    KeyCode - ascii value // kind of ( KeyCode for e key == 69 but so is E)
+                              since they are technically the same button
+            - keyReleased(KeyEvent obj)
+                >> called whenever a key is released
+    
+    Key Bindings::
+        import java.awt.event.ActionEvent;
+        import javax.swing.AbstractAction; 
+            definition - binds an Action to a KeyStroke
+            they don't require you to click a component to give it focus 
+            all Swing components use Key Bindings 
+            they offer increased flexibility compared to KeyListeners
+            they can assign key storkes to individual Swing components
+            more difficult to utilize and set up 
+        
+     AbstractAction::
+        Methods::
+            actionPerformed(ActionEvent)
+
+    KeyEvent::
+        Method::
+            .getKeyChar() // gets the Key character
+    
+    MouseListener::
+        has 5 methods
+        -  MouseClicked(MouseEvent obj)
+            >> Invoked when the mouse button has been clicked (pressed and released) on a component
+                :>
+        -  MousePressed(MouseEvent obj)
+            >> Invoked when a mouse button has been pressed on a component
+                :>
+        -  MouseReleased(MouseEvent obj)
+            >> Invoked when a mouse button has been released on a componenet
+                :>
+        -  MouseEntered(MouseEvent obj)
+            >> Invoked when the mouse enters a component
+                :>
+        -  MouseExited(MouseEvent obj) 
+            >> Invoked when the mouse exits a component
+                :>
+
+    MouseAdapter::
+        import java.awt.event.MouseAdapter;
+
+    MouseMotionAdapter::
+        import java.awt.event.MouseMotionAdapter; 
+
+    MouseEvent::
+        .getPoint(); // used in relation with a Point obj
+
+ Thread::
+  A Thread of execution in a program (kind of like a virtual CPU)
+  The JVM allows an application to have multiple threads running concurrent
+  Each thread can execute parts of your code in parallel with the main thread
+  Each thread has a priority. 
+  Threads with higher priority are executed in preference compared to threads with a lower priority
+
+  The Java Virtual Machine continues to execute threads until either of the following occurs
+    1. The exit method of class Runtime has been called
+    2. ALl user threads have died 
+
+  When a JVM starts up, there is a thread which calls the main method 
+  This thread is called "main"
+  a priority of 5 is basically the default
+  Daemon thread is a low priority thread that runs in background to perform tasks such as garbage collection
+  JVM terminates itself when all user thread (non-daemon thread) finish their execution
+     Methods::
+      ** to get the currect thread's methods we can use the .currentThread chained with other methods ** 
+
+        .activeCount(); // can be accessed statically
+        .getName() // returns the name of the main thread ||
+                                                 can be accessed statically
+        setName(String) // changes the name of the main thread || 
+                                                can be accessed statically
+        .getPriority(); // can be accessed statically || 
+            on a scale of 1 - 10, higher the number, higher the priority. 
+        .setPriority(anynumber 1 - 10);
+        .isAlive(); // can be accessed statically ||
+            returns a boolean of true or false whether the thread is "alive" or noth
+        .sleep(milliseconds) // can be accessed statically || 
+                        tells how many milliseconds to sleep 
+        .run() 
+        .start() // you have to start threads when you create a new one
+        .isDaemon(); // checks if the thread is a daemon thread (true is yes false is no)
+        .setDaemon(boolean) // makes the thread daemon if true and not daemon if false
+        .join() or .join(milliseconds) // the thread that calls this join method 
+                will wait for a specfied thread to die before starting the next thread 
+                or waits the allotted time. It's bascially like a wait.
+
+ GUI::
+    |
+        coordinates (0,0) is the top left of the frames
+        Setting the visibility of the entire frame should be done after 
+        you add all of what you want to the frame/ component 
+
+    Graphics::
+     anymore recently created graphics will paint over any previous items/graphics
+        Graphics::
+            import java.awt.Graphics;
+            Methods(potentially)::
+                repaint(); 
+                paint(Graphics obj); 
+        Graphics2D::
+            Methods::
+                .drawLine(x1,y1,x2,y2); 
+                .drawOval(x,y,width,height);
+                .fillOval(x,y,width,height); 
+                .drawRect(x,y,width,height); draws a rectangle (outline)
+                .fillRect(x,y,width,height;)
+                .setStroke(new BasicStroke(size(int))); 
+                .setPaint(Color obj); 
+                .fillArc(x, y, width, height, startAngle, arcAngle);
+                .drawArc(x, y, width, height, startAngle, arcAngle); 
+                .drawPolygon(xPoints(int[]), yPoints([]int), nPoints(int));
+                .drawPolygon(xPoints(int[]), yPoints([]int), nPoints(int));
+                .drawString(String, x, y); // starting posiiton of text is it's bottom left corner
+                .setFont(Font obj); 
+                .drawImage(Image obj, x, y, observer(normally null));
+
+    GUI JFileChooser::
+     import javax.swing.*; 
+     import java.awt.event.*; 
+         a GUI mechanism that let's a user choose a file
+            (helpful for opening or saving files)
+
+        Methods::
+            .showOpenDialog(parent component) // normally null, will select file to open, 
+                                                 returns an integer value
+            .showSaveDialog(parent component) // normally null, will select a file to save. 
+            .getSelectedFile(); // 
+            .getAbsolutePath(); //
+            .setCurrentDirectory( new File(".")); // a "." sends the file to the project folder you're in  
+                                                        you can also just set it to a specific pathway
+            JFileChooser.APPROVE_OPTION // static 
+            
+    GUI JRadioButton::
+        import javax.swing.*;
+        import java.awt.event.*; 
+        one or more buttons in a grouping in which only 1 may be selected per grouping
+        Methods::
+            .setIcon(ImageIcon obj); 
+    
+    GUI JMenuBar::
+        sets the menus on the left of the menu bar as default
+        gets set to the frame, not added
+        Methods::
+            .add(JMenu obj); 
+
+        JMenuItem::
+            new JMenuItem(String);
+            Methods::
+                .setMnemonic(KeyEvent.VK_L)// when this key is pressed it does that action of the preset MenuItem
+                                              underlines the letter in the string to show the shortcut as well
+                .setIcon(ImageIcon obj); //
+
+        JMenu::
+            new JMenu(title); 
+            Methods::
+                .add(JMenuItem)
+                .setMnemonic(KeyEvent.VK_L) // for menus, you need to hold down alt + the keyboard key you want pressed
+  
+    GUI JProgressBar::
+        Visual aid to let the user know that an operation is processing
+        can do >> new JProgressBar(min,max); 
+         Methods::
+            .setValue(index) // sets the starting value
+            .setBounds(x,y,length,height) //
+            .setStringPainted(boolean) // adds a percentage to the progress bar 
+            .setString(String); 
+            .setFont(Font obj); 
+            .setForeground(Color obj) // changes the filled color 
+            .setBackground(Color obj) // changes the starting background 
+
+    GUI JSlider::
+        import java.awt.*; 
+        import javax.swing.*;
+        import javax.swing.event.*; 
+
+        A GUI component that lets the user enter a value 
+        by using an adjustable sliding knob on a track
+        in the constructor you put the 
+           new JSlider(minimum, maximum,starting point for the slider); 
+
+         Methods::
+            .setPreferredSize(new Dimension(width, heighth));
+            .setPaintTicks(boolean); 
+            .setMinorTickSpacing(index) // how often you want a notch for the slider
+            .setPaintTrack(boolean)
+            .setMajorTickSpacing(index) // after every (index) there is a larger tick 
+            .setPaintLabels(boolean) // puts numbers for the major ticks 
+            .setFont(Font obj);
+            .setOrientation(SwingConstants.VERTICAL) // sets the slider going VERTICAL or horizontal
+            .getValue() // gets the value of what the slider is on
+            .addChangeListener(this) // 
+
+    GUI JComboBox::
+     import javax.swing.*;
+     import java.awt.event.*; 
+        a GUI component that combines a button or editable gield and a drop-down list
+        can pass in an array of reference data types into the constructor (Wrapper Classes)
+
+            Methods::
+                .getSelectedItem(); //  returns what is selected
+                .getSelectedIndex(); // returns the index of what is selected
+                .getItemCount(); // returns the amount of items
+                .setEditable(boolean); // makes the text for the buttons changeable
+                .addItem(); // adds an item to the end of the list of buttons
+                .insertItemAt(String,index); // inserts item at that index
+                .setSelectedIndex(index) // always going to select this index when the program returns
+                .removeItemAt(index) // removes the item at that index
+                .removeAllItems(); // clears the comboBox
+
+
+      ButtonGroup::
+        Methods::
+            .add(JRadioButton obj); 
+        
+    GUI JCheckBox::
+        import javax.swing.JCheckBox; 
+        a GUI component that can be selected or deselected
+
+            Methods::
+                .setText(String); 
+                .setFocusable(boolean);
+                .setFont(Font obj); 
+                .isSelected(); returns true or false
+                .setIcon(ImageIcon obj); 
+                .setSelectedIcon(ImageIcon obj); 
+
+    GUI JTextField::
+        import javax.swing.JTextField
+        a GUI textbox component that can be used to add, set, or get text
+
+            Methods::
+                .setPreferredSize(new Dimension(width,height));
+                .getText(); // gets the text typed into the JTextField; 
+                .setFont(Font obj); 
+                .setForeground(Color obj); sets the color of the font
+                .setCaretColor(Color obj); sets the color of the blinking line/ the createEtchedBorder
+                .setText(String);
+                .setEditable(boolean) // when false, the textfield inside is not editable
+
+    GUI JOptionPane::
+        - import the javax.swing.JOptionPane
+            
+            pops up a standard dialog box that prompts users for a value 
+                or informs them of something. 
+
+            Methods::
+                .showInputDialog(message) - this needs to be accessed statically 
+                    shows the text inside the method and then allows for some sort of input 
+
+                .showMessageDialog(parentComponent(obj), message(String), title(String), messageType(JOptionPane.PLAIN_MESSAGE);
+                    - needs to be accessed statically, shows the text inside of the method, messageType sets the style of the message
+                                .PLAIN_MESSAGE
+                                .INFORMATION_MESSAGE // shows an i icon 
+                                .QUESTION_MESSAGE    // shows a ? icon
+                                .WARNING_MESSAGE     // shows a yellow triangle with an i in the center for the icon
+                                .ERROR_MESSAGE       // shows a red X inside a stop sign for the icon
+                .showConfirmDialog(parentCompoenent, message, title, optionType(JOptionPane.YES_NO_CANCEL_OPTION));
+                                .YES_NO_CANCEL_OPTION // Yes returns 0, No returns 1, Cancel returns -1;
+                .showOptionDialog(parentComponent, message, title, optionType, messageType, icon(ImageIcon obj), options (array), 
+                                                                            initialValue(first button 0, second 1,etc.))
+
+            Both have an 'OK' button and the showInputDialog has an additional 'Cancel' button
+
+    GUI JButton::
+        import javax.swing.JButton;
+        a button that performs an action when clicked on 
+
+            Methods:: 
+                .setBounds(x,y,width,heighth); // same as normals
+                .addActionListener(ActionEvent obj); normally this keyword for the ActionEvent obj
+                .setText(String); //sets the text on the button 
+                .setFocusable(boolean); // setting it false gets rid of the border around the text on the button
+                .setHorizontalTextPosition(JButton.CENTER) // changes where the text position is horizontally CENTER/RIGHT/LEFT
+                .setVerticalTextPosition(JButton.CENTER) // changes where the text position is vertically CENTER/UP/BOTTOM
+                .setFont(Font obj, Font.BOLD, size) // changes the font of the text in the button
+                .setIconTextGap(int) // negatives go towards the icon positives go away from the icon
+                .setForeground(Color obj)// changes color of the text
+                .setBackground(Color obj) // changes the color of the entire button 
+                .setBorder(BorderFactory.createEtchedBorder()); // sets the border type
+                .setEnabled(boolean) // false makes the button unable to be clicked true makes it clickable
+
+    GUI JLayeredPane::
+        import javax.swing.*; 
+
+        swing container that provides a 
+        third dimension for positioning componenets 
+        ie.) depth, Z-index
+
+            different Layer names (farthest back to front)::
+                 Default        Integer.valueOf(0)
+                  Palette       
+                   Modal
+                    PopUp
+                     Drag
+            The Integer.valueOf(int) can be put into the .add() method to determine what order the LayeredPanes go
+                0 is farthest back
+
+            you can specify what layer is what in the 
+            Methods::
+                .setBounds(x,y,width, heighth) 
+                .add(obj); .add(obj, JLayeredPane.DEFAULT_LAYER); //usually the object is any kind of JLayeredPane. and then the type of layer. 
+
+    GUI JFrame::
+        - import javax.swing.JFrame;
+
+            Methods::
+                .setVisible(boolean) // makes frame visible depending on true or false;
+                .setSize(int) or .setSize(int,int) // sets the x-dimenstion and y-dimenstion of frame; 
+                .setTitle(String) // displays the title of the window/frame as the passed in string
+                .setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // exits out of the application 
+                .setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // does nothing 
+                .setResizable(boolean); // prevents frame from being resized is the value is false; 
+                .getContentPane().setBackground(Color obj); // sets the background color to whatever color you pass in
+                .add(obj) or .add(obj, BorderLayout.NORTH) - if you passed in a Label object, it adds the label to the JFrame
+                                                             Directions are NORTH,SOUTH,WEST,EAST,CENTER
+                .setLayout(null) ( normally BorderLayout) // will make the JLabel display nothing
+                .pack(); // resizes the size of the frame to accomodate with the size within the JLabel 
+                        (make sure to add all components before using this method or nothing will happen)
+                .dispose() // gets rid of the page
+                .setJMenuBar(JMenuBar obj);
+                .addActionListener(this)
+                .addKeyListener(this);  
+                .getContentPane();
+                .addMouseListener(this); 
+                .setLocationRelativeTo(null); // has the frame appear in the middle of the computer screen
+                .setIconImage(ImageIcon obj.getImage()); // sets the image icon of your frame to the image input
+                .drawString("",x,y)
+                
+    GUI JPanel::
+        import javax.swing.JPanel; 
+        a GUI component that functions as a container to hold other components
+        
+        by default the layout is a FlowLayout
+
+            Methods:: 
+                .setBackground(Color obj) // sets the color of the panel
+                .setBounds(x,y,width,heighth) // sets where the panel is in places of the frame
+                .add(obj) or .add(obj, BorderLayout.NORTH) - if you passed in a Panel object, it adds the panel to the JPanel
+                                                             Directions are NORTH,SOUTH,WEST,EAST,CENTER
+                .setLayout(new BorderLayout) // will make the JLabel display any components left horizontally and centered vertically
+                                same as the JFrame method
+                .setPreferredSize(new Dimension(width,height)); 
+                
+    GUI JLabel::
+        a GUI display area for a string of text, an image, or both
+
+        import javax.swing.JLabel; 
+
+        normally centers and puts text on the left hand side of the screen
+
+            Methods::
+                .setText(String); //set text of label, can also be done in the constructor; 
+                .setIcon(obj); // puts an image onto the JLabel, 
+                        recenters the text if there is any and puts on the righthand side of the image icon
+                .setHorizontalTextPosition(JLabel.LEFT)// puts text on the LEFT/RIGHT/CENTER of the imageIcon
+                .setVerticalTextPosition(JLabel.TOP); // sets text TOP/BOTTOM/CENTER of the imageIcon 
+                        (outside the image not inside if top or bottom)
+                .setForeground(Color obj); // changes font color; 
+                .setFont( new Font(name, Font.PLAIN, size)); // changes the font style; 
+                        (PLAIN,BOLD,UNDERLINED,ITALICS are all built into java)
+                .setIconTextGap(int) // adjusts how far away your text is from your image, 
+                        negative numbers make the text closer to the image
+                .setBackground(Color obj); // sets background color of the JLabel
+                .setOpaque(boolean) // if true, paints every pixel in its bounds, 
+                        basically displays the background color
+                .setBorder(Border obj); //sets the border of the label 
+                .setVerticalAlignment(JLabel.CENTER); // sets vertical position of icon plus text within the label  
+                                (keeps the icon in the CENTER/TOP/BOTTOM vertically regardless of resizing)
+                .setHorizontalAlignment(JLabel.CENTER); // sets horizontal position of icon plus text within the label 
+                                (keeps the icon in the CENTER/TOP/BOTTOM horizontally regardless of resizing)
+                .setBounds(x,y,width,heighth) // sets the label in a specific location of the JFrame at a specific size 
+                .setLocation(x,y) // sets the location of the label. 
+                .getX() // gets the x of the label 
+                .getY() // gets the y of the label
+                .addMouseListener(this) //
+                .getInputMap()
+                .put(KeyStroke.getKeyStroke(keyChar),actionMapKey (String));
+                                 //can be chained with getInputMap and Action Map
+                .getActionMap().put(actionMapKey(String), Action obj); //triggers a method from the Abstract 
+
+    GUI JColorChooser::
+        a GUI mechanism that lets a user choose a color
+        import java.awt.Color;
+        import java.awt.event.*;
+        import javax.swing.*;
+            Methods::
+                JColorChooser.showDialog(component,String(title),initialColor(Color obj))
+                        // used when making a Color object and setting it = to this method  
+
+    GUI ImageIcon::
+            import javax.swing.ImageIcon;
+            lists the file path or name in the arguemnet for the constructor
+
+                Methods::
+                    .setIconImage(obj.getImage()); //changes the icon of frame;      
+                    .getIconWidth();
+                    .getIconHeight();
+                    .paintIcon(component, Graphics obj, x, y); 
+ 
+ Point::
+        import java.awt.Point;
+        new Point(x,y); 
+            Methods::  
+                .getX()
+                .getY()
+                .translate(x,y); // translates the Point obj to the new position
+
+ Colors::
+        import java.awt.Color; 
+        -- 0,0,0 is BLACK || 255,255,255 is WHITE || 255,0,0 is RED || 0,255,0 is GREEN || 0,0,255 is BLUE
+        can also put in the hexideciaml number so 
+            ie.) Color color = new Color(0xFFFFFF) is WHITE
+                on a range from 0 to F 
+    
+ Font::
+        import java.awt.Font;
+        new Font(String,Font.PLAIN,size); // gets a font object with a string type ( like Times New Roman), 
+                                             font style (like bold or italics), and set size
+
+ Image::
+        Image image = new ImageIcon("filepathway").getImage();    
+        Methods::
+            .getWidth(ImageObserver(normally null))
+            .getHeight(ImageObserver(normally null))
+
+ Timer:: 
+        import java.awt.*; 
+        import java.awt.event.*; 
+        import javax.swing.*; 
+     A facility for threads to schedule tasks for future 
+     execution in a background thread
+     
+         Timer timer = new Timer(int, ActionListener obj)
+            Methods::
+                .start() // will start the timer on instatiation of the component; 
+                .schedule(TimerTask obj,miliseconds)
+                .schedule(TimerTask obj, Calendar obj.getTime());
+                .scheduleAtFixedRate(TimerTask obj, (when you want this to be executed(date.getTime())), period it repeats over(milliseconds) )
+                .cancel(); // does as name implies
+
+ TimerTask::
+    A task that can be scheduled for one-time 
+    or repeated execution by a Timer
+        Methods::
+            run()
+ 
+ Calendar::
+  Calendar date = Calendar.getInstance(); 
+    Methods::
+        .set(Calendar.YEAR, 2020); 
+        .set(Calendar.MONTH, Calendar.JUNE)
+        .set(Calendar.DAY_OF_MONTH, 20)
+        .set(Calendar.HOUR_OF_DAY, 0 (military time));
+        .set(Calendar.MINUTE, minute)
+        .set(Calendar.SECOND, seconds)
+        .set(Calendar.MILLISECOND, milliseconds)
+
+ Layouts (works a lot with GUI)::
+        Layout Manager -- Defines the natural layout for components within a container
+        BorderLayout::
+            there are 3 common managers 
+            BorderLayout - A BorderLayout places components in five areas: NORTH, SOUTH,WEST,EAST,CENTER
+                        All extra space is placed in the center area. 
+            
+            when making a new BorderLayout(int,int) 
+            you can set the dimensions of the size of the border for the width 
+            (width, int) and/or height (int, height)
+                
+            import javax.swing.border.Border; 
+            import javax.swing.BorderFactory; 
+
+            instantiated by doing :: Border border = BoderFactory.createLineBorder(Color obj, width); 
+
+        FlowLayout::
+            import java.awt.FlowLayout
+                places components in a row, sized at their preferred size.
+                If the horizontal space in the container is too small,
+                the FLowLayout class uses the next available row. 
+
+                .setLayout(new FlowLayout()); 
+                FlowLayout.LEADING - has components stick to the lefthand side of the frame
+                FlowLayout.CENTER - the default, has the components stick to the center of the frame
+                FlowLayout.TRAILING - has the components stick to the righthand side of the frame
+
+                .setLayout(new FlowLayout(FlowLayout.CENTER, horizontal, vertical)) 
+                    horizontal sets the horizontal spacing
+            if the components in the frame don't fit into the resized frame, they wrap down a row
+        
+        GridLayout::
+         import java.awt.GridLayout
+            places components in a grid of celss.
+            Each component takes all the available space within its cell,
+            and each cell is the same size
+                new GridLayout();
+                new GridLayout(rows,columns); 
+                new GridLayout(rows,columns,horizontal spacing, vertical spacing)
+                Uneven amounts of components compared to columns/rows adds one column/row as necessary
+
+ Generics::
+     - enables types (classes and interfaces) to be parameters when defining:
+                            classes, interfaces and methods
+     a benefit of this is to eliminate the need to create multiple versions of methods 
+                            or classes for various data types.
+     Use 1 version for all reference data types 
+
+     There can be multiple parameters for generic classes   
+        ie.) public class MyGenericClass<T,V>{}
+
+    Generic Classes::
+        After the class name, add the <>
+            ie.) public class MyGenericClass <T>{}
+            Use generics as a data type reference as well. 
+            
+            On instatiations it should look like this::
+                MyGenericClass<Data type> reference = new MyGenericClass<>(); 
+
+    Generic Methods::   
+        to use a generic method is to add (before the void or data type) put <Thing>
+        **They do not have to be static**
+            ie.) public static <T> void displayArray(T[] array){}
+            ie.) public static <T> T getFirst(T[] array){}
+            ie.) public T getValue(){}
+ 
+ Serialization & Deserialization:: 
+    **important notes**
+        1. children classes of a parent class that implements Serializable will do so as well 
+        2. static fields are not serialized (they belong to the class, not an individual object)
+        3. the calss's definition ("class file") itself is not recorded, cast it as the object type (data type of that object)
+        4. Fields declared as "transient" aren't serialized, they're ignored
+        5. serialVersionUID is a unique version ID 
+
+        To get a unique version ID >> long serialVersionUID = ObjectStreamClass.lookup(objectName.getClass()).getSerialVersionUID();  
+        make sure that the versionUID of the serialized class matched the deserialized one
+         
+        You can declare a static final serialversionUID; 
+        ---------------------------------------------------------------------------
+    Serialization::
+        the process of converting an object into a byte stream. 
+        An object persists (saves the state) of the object after the program exits
+        This byte stream can be saved as a file or sent over a network
+        It cam be sent to a different machine 
+        Byte stream can be saved as a file (with a .ser file extension) whihc is platform independent
+        (Think of this as if you're saving a file with the object's information)
+
+            Steps to Serialize an Object::
+                1. Your object class should implement Serializable interface
+                2. add import java.io.Serializable;
+                3.FileOutputStream fileOut = new FileOutputStream(file path); 
+                4. ObjectOutputStream out = new ObjectOutputStream(fileOut(FileOutputStream obj)); 
+                5. out.writeObject(objectName(the object you want to save))
+                6. out.close(); fileOut.close; 
+        -----------------------------------------------------------------------
+
+    Deserialization::
+        the reverse process of converting a byte stream into an object.
+        (Think of this as if you're loading a saved file.)
+
+            Steps to Deserialize an Object::
+                1. Declare your object(don't instantiate)
+                2. Your class should implement Serializable interface
+                3. add import java.io.Serializable;
+                4. FileInputStream fileIn = new FileInputStream(filepath);
+                5. ObjectInputStream in = new ObjectInputStream(fileIn);
+                6. objectName = (objectName data type) in.readObject();
+                7. in.close(); fileIn.close(); 
+        ------------------------------------------------------------------------
+
+ Math Methods::
+    Method               Signature                          Description
+    abs                int    abs(int x)                    Returns the absolute value of x
+    abs                double abs(double x)                 Returns the absolute value of x
+    pow                double pow(double b, double e)       Returns b to the power of e
+    sqrt               double sqrt(double x)                Returns the square root of x
+    ceil               double ceil(double x)                Returns next highest whole # from x
+    floor              double floor(double x)               Returns next lowest whole # from x
+    min                double min(double a, double b)       Returns the smaller # between a and b (double)
+    max                double max(double a, double b)       Returns the larger # between a and b  (double)
+    min                int    min(double a, double b)       Returns the smaller # between a and b (int)
+    max                int    max(int a, int b)             Returns the larger # between a and b  (int)
+    random             double random()                      Returns a random double (range: 0 <= r < 1)
+    round              long   round(double x)               Returns x rounded to the nearest whole #
+    PI                 double PI                            Returns 3.141592653589793
+    log                double log(double x)                 Returns log base e of x 
+    sin                double sin(double a)                 Returns the sine of angle a (a is in radians)   
+    cos                double cos(double a)                 Returns the cosine of angle a (a is in radians)
+    tan                double tan(double a)                 Returns the tangent of angle a (a is in radians) 
+    asin               double asin(double x)                Returns the arcsine of x (in range of -PI/2 to PI/2)
+    acos               double acos(double x)                Returns the arccosine of x (in range of 0 to PI)
+    atan               double atan(double x)                Returns the tangent of x (in range of -PI/2 to PI/2)
+    toDegrees          double toDegrees(double angRad)      Converts radians to degrees
+    toRadians          double toRadians(double angDeg)      Converts degrees to radians 
+    
+ Random class::
+     import by java.util.Random
+
+     Methods:
+          nextInt(x) - gives a random number between -2billion and 2 billion   
+               the x is an optional size indicator from 0 to <x
+          nextDouble(x) - same thing as nextInt but any number between 0 to <1
+          nextBoolean() - gives either true or false randomly
+
+ Switch 
+    - a statement that allows a variable to be tested for equlaidty against a list of values
+        switch(variable wanted to compare to other things){
+            case "inputed case(could be string or number)": condition for what to do with the switch case
+        }
+        default - switch cases that don't match without a default do nothing, otherwise if there is no match they print the default
+        break; - makes the program stop doing whatever was after the matched case, 
+            otherwise it would do whatever the matching case is, and every subsequent case after
+
+ Logical Operators::
+     && - (AND) both conditions must be true to output true; otherwise false
+     || - (OR)  either condition must be true to output true; otherwise false
+     !  - (NOT) reverses boolean value of condition
+     ^  - (XOR) neither condition can match to be true for an output of true; otherwise false; 
+
+ While & do-while Loops:: 
+     while loops execute a block of code as long as its condition remains true
+     do-while loops execute the block of code first before checking the condition
+
+ Arrays (data type):: 
+     Array::
+        requires a [] before or after the reference to be viewed as an array
+        the data type put in has to stay the same as the array 
+
+        Different ways to do Arrays >
+            > String[] s = new String[1];
+                - s[0] = "hi";
+            > String s[] = {"help", "me", "Please",};
+        You can make an array of Objects the same way you can make an array of ints
+
+     2D Arrays (data type)::
+        An array of arrays
+
+            Different ways to do 2D Arrays >
+                > String[][] sT = new String[2][2];
+                > String [] sT[] = { {"hello","Hi"}, {"Howdy", "Ho"} };
+ 
+ Methods for Strings ::
+     .equals(""); - returns a boolean value (case sensitive)
+     .equalsIgnoreCase(""); - returns a boolean value (not case sensitive) (lower case or upper case don't matter)
+     .charAt(int); - returns a char at a particular index (returns -1 if the char doesn't exist in the string)
+     .indexOf(""); - returns the index of the particular string passed in (an int)
+     .isEmpty(); - returns a boolean value checking if the string is empty or not
+     .toLowerCase(); - returns the string in all toLowerCase
+     .toUpperCase(); - returns the string in all Uppercase 
+     .trim(); - trimms all empty space
+     .replace(oldChar, newChar) - replaces all occurences of the old char with the new char in the string 
+
+ Wrapper Classes::
+     provides a way to use primitve data types as reference data types
+     reference values are slower to access
+
+     autoboxing - the automatic conversion that the Java compiler makes between the primitive type and their object wrapper class
+     unboxing - Automatic conversion of of wrapper classes to primitive data type
+     
+
+     
+     Primitive      Wrapper
+     boolean        Boolean
+     char           character
+     int            Integer
+     double         Double 
+ 
+ Sets::
+    Methods for Sets:: 
+        
+            .add(element) - adds element to the set at next available index
+            .size() gets the length/ size of the set
+            .remove(element) removes all of a specific value from your set
+            .contains(element) returns a boolean
+            .clear() clears a list of all items in the set
+            .isEmpty() returns a boolean, true if the set is empty and false if the set has items in it
+
+    Sets when discussing Integers::
+    
+        Sets and lists are from the Collection interface
+        LinkedHash sets do not order the what is inside the set at all
+        Hash sets go by numerical value for ordering numbers 
+        Tree sets go by literal value for ordering numbers,
+        then whichever of the alphabet that comes first (A or a whichever is added first comes first)
+        then by symbols 
+ 
+    Sets when discussing Strings:: 
+    
+        HashSets order by the hash code of the string
+        LinkedHash Sets get printed in the order they were added
+        Tree Sets order by tree data structure (smallest ascii # to largest)
+ 
+ ArrayLists::
+    ArrayList::
+        Elements can be added and removed after compilation phase, stores reference data types, resizable/mutable
+        ArrayList<T>
+        T is a generic class, has to be the Wrapper class/ an object
+        
+        ArrayList<Integer> numbers = new ArrayList<Integer>(); 
+        
+    2D ArrayLists :: 
+     a list of lists
+     ArrayList<ArrayList<String>> reference = new ArrayList(); 
+
+    Methods for ArrayLists::
+        .add(element) - adds element to list at next available index
+        .get(index) - gets an element from a specific index
+        .set(index,element) - sets a specific index to the input element
+        .subList(startIndex, endIndex) - gets the elements between the indicies (startIndex inclusive, endIndex exclusive)
+        .size() - gets the size of the ArrayList
+        .remove(index) - removes the element at the specific index
+        .clear() - clears out the ArrayList of all elements
+
+ Maps::
+
+    **You cannot have two of the same keys for a map but you can have the same element with accessed through different keys**
+        *When printing map.get(element) and that element doesn't exist, it prints out "null" *
+        - The values are treated as objects
+        - All orders by the key and not the value stored with the key
+            Methods for Maps::
+                .put(key,element) - associates a specific element with a specific key
+                .get(key) - gets the element associated with the key
+                .containsValue(element) - returns true or false depending on if the map contains that element
+                .containsKey(key) - returns true or false depending on if the map contains that key
+                .values() - returns all the values of the map
+                .clear() - clears the map of all keys and elements
+                .remove() - removes the element associated with the key from the map
+
+      HashMaps:
+             - does not return in order, prints in order of smallest HashCode to largest
+             - orders by the key's smallest HashCode to largest
+             - Sort of the same ordering as Hash Sets
+             - keys and elements do not have to have the same data types
+             - negative numbers have a smaller hashcode than their counterparts 
+                ie.) -10 is before 10 but they will always be right next to each other so
+                     {-2 = 7, 2 = 12, -11 = 1, 11 = 0}
+            
+      TreeMaps:
+             - prints in order of smallest ascii value to largest
+             - keys and elements have to have the same data type
+             - negative numbers are treated as their value 
+                ie.) -10 is smaller than -5 and will not be next to 10 nor 5
+            
+      LinkedHashMaps:
+             - prints in order they are "put"
+             - keys and elements do not have to have the same data types
+ 
+ Methods for Arrays(the object not the type of data)::
+
+      .sort(reference,optional: startIndex,endIndex) 
+        - sorts the array, sorts the array from the specified index, exclusive
+
+ Local and Global::
+     local variables are declared inside a method (only visible to that method)
+     global variables are declared outside a method, but within a class (visible to all parts of the class)
+
+ toString ::
+    a special method that all objects inherit, 
+        that returns a string that "textually represents" an object 
+        can be used both implicitly and explicitly 
+    prints the memory address of objects 
+    normally overridden
+    
+ Inheritance (implements and extends)::
+    the process where one class acquires the attributes and methods of another
+        do >> public class Example extends Stuff{}
+        Example is a subclass a.k.a child class of Stuff
+        Stuff is the superclass a.k.a parent class of Example since it is the one being extended
+        
+        Extending vs Implementing::
+            Classes can extend classes
+            interfaces cannot implement another interface
+            interfaces cannot extend interfaces
+
+        Access Modifiers::
+         changes the level of access that a data type or method can have 
+
+            Modifier             Class      Package     Subclass    World
+            public                Yes         Yes          Yes       Yes
+            protected             Yes         Yes          Yes       no  
+            no modifier/default   Yes         Yes          no        no
+            private               Yes         no           no        no       
+
+            --Anything public is available across packages
+            --defaults/ no modifiers are only available to the package it is within
+            --Anything protected has to be in the parent class if it wants to be accessed outside of the package/
+                    the classes have to be subclasses of the class that contains the protected member
+            --Something that is private is only accessible/ visible to the class that contains it
+ 
+ Abstract Classes and Interfaces::
+    abstract::
+        abstract class cannot be instantiated, but they can have a subclass
+        abstract methods are declared without an implementation
+            This is basically the equivalent of saying a class has to have these methods
+                but you can't say what is in the methods unless you are in a class that
+                extends the abstract class w/o being abstract itself
+
+    Interface::
+        **THINK** a template that can be applied to a class. 
+        similar to inheritance, but specifies what a class has/must do. 
+        classes can apply more than one interface, inheritance is limited to 1 direct super class      
+
+        Interfaces are NOT classes
+            you can declare methods and variables
+            you do not need to have a body for the methods
+
+            classes that implements an interface, they NEED to implement
+                and define what the method does that is in the interface  
+
+ Exception::
+    an event that occurs during the execution of a program that, 
+    disrupts the normal flow of instructions
+
+                try{
+                    //body of code
+                }catch(*type of exception*){
+                    //body of code
+                }finally{
+                    //bocy of code
+                }
+        try - what you put your code into so that it can attempt that body of code
+        catch() - what happens if the specified exception occurs, You can always say Exception e instead of a specific exception.
+        finally - what will always happen regardless of if an exception occurs or not
+
+        you can have multiple catch() as long as the first attempted to be caught Exception is not the parent class Exception
+         Basically be specific before you go to the general Exception or else the body in the other catch() won't run
+ 
+ Files::
+    
+    File::
+        An abstract representation of file and directory pathnames
+
+        need to import java.io.File;
+
+        either \\ (double back slashes) 
+        or / (one forward slash)  per "location"
+
+        if the file is within the project folder you only need the name, otherwise
+            you need the resulting location path
+
+        File Methods:
+            .exists() - checks if the file exists/ you are able to access it
+            .getPath() - displays whatever you have in the constructor, the path
+            .getAbsolutePath() - displays the entire/ full file path within the computer
+            .isFile() - returns true or false depending on if it is a file or not
+            .delete() - deletes the file within the project folder or the specified one from the path. 
+
+    FileWriter::
+        import java.io.FileWriter;
+        import java.io.IOException;// allows to
+
+            FileWriter Methods::
+                .write(String) - writes whatever you passed in as the String argument onto the file specified. 
+                .close() - 
+                .append(String) - appends whatever you passed in as the String argument onto the file specified. 
+    
+    FileReader::
+        import java.io.FileReader;
+
+        read the contents of a file as a stream of characters. One by one 
+        read() returns an int value which contains the byte value 
+        When read() return -1, there is no more data to be read
+    
+ Audio::
+    
+    import javax.sound.sampled.*; (not compatible with mp3 files, is compatible with wav files)
+    you'll make an AudioInputStream object with the file passed into the argument
+        ie.) AudioInputStream audio = AudioSystem.getAudioInputStream(file);
+    You'll also make a Clip object
+        ie.) Clip clip = AudioSystem.getClip(); 
+            clip.open(audio); <<you open the clip and pass in the AudioInputStream object as an arguement to access the contents inside>>
+            clip.start(); starts the clip but you ned a scanner object or some sort of condition to tell it to wait 
+        
+
+    Clip Methods::
+        .open(obj) - opens the clip
+        .start(); starts the clip
+        .stop(); stops the clip
+        .setMicrosecondPosition(0) - resets the audio clip << send it to the very beginning of the clip>>
+        .close() 
+
+ Keywords::
+
+    Final keyword::
+        void and final are interchangable in placement 
+        makes the method or stored value immutable after the first initialization and declaration of it. 
+        common practice is to make the variable name in all capital letters
+
+    Static keyword::
+     modifier. A single copy of a variable/method is created and shared.
+            the class "owns" the static member
+            if you create object from a class, they all share the static variable method
+        You can call static variables through direct usage of the class name 
+                ie.) if you had a Friend class and a count variable you can do Friend.count
+                     instead of creating a Friend object to access count like:
+                            Friend friendo = new Friend(); 
+                            friendo.count; 
+
+    Super keyword::
+     keyword refers to the superclass (parent) of an object very similar to the "this" keyword (refers to the class) 
+        super refers to the object's parent class
+
+    This keyword::
+     when using this in terms of showing that the name put into a constructor is the same as the one inside of the constructor
+     do this.reference = differentReference
+     this can be used from objects to variables
+ 
+ Compiling & Running Java w/ the cmd prompt::
+     
+     Steps::
+        1. Make sure you have a Java JDK installed || do this by going 
+        2. (optional) use a text editor and sae a file as .java
+        3. Open Command Prompt (windows) or Terminal (Mac) on your computer
+        4. set path=C:\Program Files\Java\jdk-13.0.1\bin (where the JDK is located) 
+        5. cd C:\Users\Cjosep\Desktop ( or wherever your java file is)
+        6. javac (nameofclass).java (to compile)
+        7. java (nameofclass) (to run a .class file, it's portable)
+    -------------------------------------------------------------------------------
+ 
+ Executable application::
+  Create an executable jar with Eclipse IDE
+   Steps::
+    1. Right click on your Java project (pick a project with a GUI [for fun =])
+    2. Export 
+    3. Java > Runnable Jar file
+    4. At Launch configuration select your project
+    5. At Export destination, select where you want this jar file exported to
+    6. finish
+  -----------------------------------------------------------------------------
+  Create an executable jar with IntelliJ
+   Steps::
+    1. File > Project Structure > Artifacts > (+) > JAR > jar from module with dependencies
+    2. Main Class: select the class containing your main method
+    3. OK
+  -----------------------------------------------------------------------------
+
+  If you want an icon, convert an image to an .ico file 
+    Steps::
+        1. https://icoconvert.com/ ( this is a decent site)
+        2. Choose your image (file type may vary)
+        3. Upload
+        4. Convert to ICO
+        5. Download your icon
+  ------------------------------------------------------------------------------
+  Use Launch 4 to create an .exe with a custom icon
+    Steps::
+        1. Install Launch4j http:://launch4j.sourceforge.net/ 
+        2. Output file: browse for the output destination and name your file ending with .exe
+        3. Jar: browse for where you saved your far or executable jar file
+        4. (Optional) Icon: browse for your custon icon (must be .ico)
+        5. navigate to JRE tab
+        6. Bundled JRE path: Browse for location of your jdk (ie. C:\Program Files\Java\jdk-21)
+        7. At the top of the window, clikc the Build Wrapper (gear icon)
+        8. name and save the Launch4j config file where you want
+        9. Your application.exe shuold be saved to your output file location (no longer need previous files)

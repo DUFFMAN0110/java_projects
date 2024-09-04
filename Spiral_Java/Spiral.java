@@ -1,4 +1,4 @@
-package Practice_Java;
+package Spiral_Java;
 
 
 
@@ -38,15 +38,15 @@ public class Spiral
                 map[distD][k] = num;
                 num++; 
             }
-            for(int l = distD; l > distU; l--)
-            {
+            for(int l = distD; l > distU; l--){
+
                 map[l][distR] = num;
                 num++;
             }
             for(int g = distR ; g > distL ; g-- ){
 
-            map[distU][g] = num; 
-            num++;
+                map[distU][g] = num; 
+                num++;
             }
             if(distD != (spiral/2) -1)
             {

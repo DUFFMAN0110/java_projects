@@ -11,20 +11,19 @@ import static java.lang.System.*;
 import java.util.Scanner;
 
 public class GameRunner{
- 
-    public static void main(String[] args){  
 
-        Scanner kb = new Scanner(System.in);
-        Player you = new Player();
-        Player2 you2 = new Player2(); 
+    public static void main(String[] args) throws Exception{  
         
-        out.print("Size of Gameboard:: ");
-        int s = kb.nextInt(); 
-        you.setSize(s);        
-        out.print(you); 
-        you.goGame(); 
+    //    Scanner kb = new Scanner(System.in);
+    //     Player you = new Player();
+        
+    //     out.print("Size of Gameboard:: ");
+    //     int s = kb.nextInt(); 
+    //     you.setSize(s);        
+    //     out.print(you); 
+    //     you.goGame(); 
 
-
+       new Player2(); 
 
     }
 

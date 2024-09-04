@@ -1,4 +1,4 @@
-package Practice_Java;
+package Spiral_Java;
 
 import java.util.Scanner;
 import static java.lang.System.*;
@@ -12,6 +12,7 @@ public class SpiralRunnerThree {
             Spiral spiral = new Spiral(sc.nextInt()); 
             out.println(spiral);
             }  
+            sc.close(); 
         }
         catch(Exception e){
             out.print("well dis don't work"); 

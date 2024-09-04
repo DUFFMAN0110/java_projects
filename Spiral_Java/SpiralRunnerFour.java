@@ -1,4 +1,4 @@
-package Practice_Java;
+package Spiral_Java;
 
 import javax.swing.JOptionPane;
 public class SpiralRunnerFour{
