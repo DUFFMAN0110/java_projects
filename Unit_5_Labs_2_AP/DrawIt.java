@@ -4,7 +4,7 @@
 
 import javax.swing.JFrame; 
 import java.awt.Component;
-import java.awt.Graphics;
+// import java.awt.Graphics;
 import java.awt.Color;
  
 public class DrawIt extends JFrame
@@ -29,6 +29,7 @@ public class DrawIt extends JFrame
 
 	public static void main( String[] args )
 	{
+		@SuppressWarnings("unused")
 		DrawIt run = new DrawIt();
 	}
 }

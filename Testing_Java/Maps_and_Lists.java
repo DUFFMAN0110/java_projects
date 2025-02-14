@@ -1,4 +1,4 @@
- 
+package Testing_Java;
 
 import java.util.*; 
 import static java.lang.System.*; 
@@ -7,6 +7,7 @@ import static java.lang.System.*;
 
 public class Maps_and_Lists{
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public static void main(String[] args){
 
         Set<Integer> hash = new HashSet<Integer>(); 

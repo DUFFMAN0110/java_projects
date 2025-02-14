@@ -1,5 +1,5 @@
 package Collaborative_Work;
-import java.util.*; 
+// import java.util.*; 
 
 
 public class BaseConverter {
@@ -7,7 +7,7 @@ public class BaseConverter {
     private int num; 
     private int convertedD; 
     private String convertedB; 
-    private ArrayList<Integer> listchars = new ArrayList<>(); 
+    // private ArrayList<Integer> listchars = new ArrayList<>(); 
 
     
     public BaseConverter(){

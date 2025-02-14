@@ -1,7 +1,0 @@
-1. Utilities:: $0.0
-2. Groceries:: $0.0
-3. Transportation:: $0.0
-4. Clothing:: $0.0
-5. Rent:: $0.0
-6. Subscriptions:: $0.0
-7. Miscellaneous:: $0.0

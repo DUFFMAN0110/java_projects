@@ -9,32 +9,33 @@ public class DiscountRunner
 { 
 	public static void main( String args[] )
 	{
-		Scanner keyboard = new Scanner(System.in);		
-		out.print("Enter the original bill amount :: ");
-		double amt = keyboard.nextDouble();
-		Discount d = new Discount( amt );
-		out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
+		try (Scanner keyboard = new Scanner(System.in)) {
+			out.print("Enter the original bill amount :: ");
+			double amt = keyboard.nextDouble();
+			Discount d = new Discount( amt );
+			out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
 
-		out.print("Enter the original bill amount :: ");
-		amt = keyboard.nextDouble();
-		d = new Discount( amt );
-		out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
+			out.print("Enter the original bill amount :: ");
+			amt = keyboard.nextDouble();
+			d = new Discount( amt );
+			out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
 
-		out.print("Enter the original bill amount :: ");
-		amt = keyboard.nextDouble();
-		d = new Discount( amt );
-		out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
-		
-		out.print("Enter the original bill amount :: ");
-		amt = keyboard.nextDouble();
-		d = new Discount( amt );
-		out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
+			out.print("Enter the original bill amount :: ");
+			amt = keyboard.nextDouble();
+			d = new Discount( amt );
+			out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
+			
+			out.print("Enter the original bill amount :: ");
+			amt = keyboard.nextDouble();
+			d = new Discount( amt );
+			out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
 
-		out.print("Enter the original bill amount :: ");
-		amt = keyboard.nextDouble();
-		d = new Discount( amt );
-		out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
-		// add more test cases
+			out.print("Enter the original bill amount :: ");
+			amt = keyboard.nextDouble();
+			d = new Discount( amt );
+			out.printf("Bill after discount :: %.2f \n\n" , d.getTheBill());
+			// add more test cases
+		}
 	}
 }
 
