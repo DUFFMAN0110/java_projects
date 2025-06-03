@@ -1,8 +1,7 @@
 package BudgetingApplication;
 
-import java.util.*; 
-
-import java.io.File;
+import java.util.*;
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,209 +11,126 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class BudgetRunner {
-    /*
-     * At present moment, I do not know how to overwrite files but the code roughly works?
-     */
+
+    private static final String FILE_PATH = "C:\\Users\\josep\\OneDrive\\repos\\java_projects\\BudgetingApplication\\BudgetTracker.txt";
+    private static final int CATEGORY_COUNT = 7;
+    private static final String[] CATEGORY_NAMES = {
+        "Utilities", "Groceries", "Transportation", 
+        "Clothing", "Rent", "Subscriptions", "Miscellaneous"
+    };
+    
     public static void main(String[] args) throws IOException{
-        // Scanner kb = new Scanner(System.in); 
-        // System.out.print("Enter a budget category :: ");
-        // String cat1 = kb.nextLine(); 
-        // System.out.print("Enter how much you have spent so far :: ");
-        // double amt1 = kb.nextDouble(); 
-        // System.out.printf(cat1 + " :: $ %.2f\n", amt1);
-        // kb.close(); 
-        // System.out.print("End of Program.");
-        // File budgetTracker = new File("C:\\Users\\josep\\OneDrive\\repos\\java_projects\\BudgetingApplication\\BudgetTracker.txt");
         
+        // This was an older test of getting input from the terminal input
 
+            // Scanner kb = new Scanner(System.in); 
+            // System.out.print("Enter a budget category :: ");
+            // String cat1 = kb.nextLine(); 
+            // System.out.print("Enter how much you have spent so far :: ");
+            // double amt1 = kb.nextDouble(); 
+            // System.out.printf(cat1 + " :: $ %.2f\n", amt1);
+            // kb.close(); 
+            // System.out.print("End of Program.");
+        
+        Scanner kb = new Scanner(System.in); 
+        ArrayList<Double> currentSpent = new ArrayList<>(); 
+        // fill with zeros
+        for(int i = 0; i < CATEGORY_COUNT; i++){
+            currentSpent.add(0.0); 
+        }
 
-        Scanner kb = new Scanner(System.in);
-            // File f = new File("C:\\Users\\josep\\OneDrive\\repos\\java_projects\\BudgetingApplication\\BudgetTracker.txt");
-            // if(!f.exists() && f.isDirectory()){
-            //     FileWriter filewriter = new FileWriter(f);
-            // }
-            Path path = Paths.get("java_projects\\BudgetingApplication\\BudgetTracker.txt");
-            // FileWriter filewriter = new FileWriter(path); 
-            ArrayList<Double> currentSpent = new ArrayList<>();
-            String schoice, samt; 
-            int choice;
-            double nextAmt; 
-   
-   
-            
-            
-            // if it exists, read the lines, make sure you get only the numbers, 
-            // and then add them to their corresponding spot in the ArrayList
-            System.out.println("What is happening?");
-            if(Files.exists(path)){ 
-                String pathAsString = "java_projects\\BudgetingApplication\\BudgetTracker.txt"; 
-                FileReader fileReader = new FileReader(pathAsString); 
-                int i; 
-                while((i = fileReader.read()) != -1 ){
-                    String s = myReader.nextLine();
-                    System.out.println(s);
-                    currentSpent.set(i, currentSpent.get(i) + Double.parseDouble(s.substring(s.indexOf("$")+ 1))); 
-                }
-                myReader.close(); 
-            }else{
-                System.out.println("WHY DON\'t I EXIST????");
-            }
-                //fill slots with 0; 
-                if(currentSpent.isEmpty()){
-                    System.out.println("HOW AM I EMPTY?????");
-                    for(int i = 0; i < 7; i++){
-                        currentSpent.add(0.0);
+        Path path = Paths.get(FILE_PATH);
+        if (!Files.exists(path)) {
+            System.out.println("Budget file does not exist. A new one will be created.");
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            int index = 0;
+            while ((line = reader.readLine()) != null && index < CATEGORY_COUNT) {
+                int dollarIndex = line.indexOf("$");
+                if (dollarIndex != -1) {
+                    String amountStr = line.substring(dollarIndex + 1).trim();
+                    try {
+                        double amount = Double.parseDouble(amountStr);
+                        currentSpent.set(index, amount);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Invalid number in file for " + CATEGORY_NAMES[index]);
                     }
                 }
-        
-            
+                index++;
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading from file: " + e.getMessage());
+        }
 
+        int choice;
+        do{
+            displayMenu();
+            choice = getIntInput(kb, "Choice:: ", 0, CATEGORY_COUNT);
+            if (choice >= 1 && choice <= CATEGORY_COUNT) {
+                double amount = getDoubleInput(kb, "Enter Amount Spent on " + CATEGORY_NAMES[choice - 1] + " :: $");
+                currentSpent.set(choice - 1, currentSpent.get(choice - 1) + amount);
+            }
+        }while(choice != 0); 
 
-            
-            // ArrayList<Integer> amtSpentUtilities = new ArrayList<>();         
-            
-            
-            
-            
-            
-        //     do{
-        //         displayMenu(); 
-                
-        //         System.out.print("\n\nChoice:: ");
-        //         schoice = kb.next(); 
-                
-                
-        //         while(schoice.matches("[A-Za-z]*")){
-        //             System.out.print("Invalid Input.\nChoice:: ");
-        //             schoice = kb.next(); 
-        //         }
-                
-        //         if(schoice.length() > 1){
-        //             choice = Integer.parseInt(schoice.substring(0,1)); 
-        //         }else{
-        //             choice = Integer.parseInt(schoice);  
-        //         }
-                    
-        //         switch(choice){
-        //             case 1: 
-        //                 System.out.print("Enter Amount Spent on Utilities:: $");
-        //                 samt = kb.next(); 
-   
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next(); 
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
+        // writeToFile(); 
+        try (FileWriter writer = new FileWriter(FILE_PATH)) {
+            for (int i = 0; i < CATEGORY_COUNT; i++) {
+                writer.write((i + 1) + ". " + CATEGORY_NAMES[i] + ":: $" + String.format("%.2f", currentSpent.get(i)) + "\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
 
-        //                 currentSpent.set(0, currentSpent.get(0) + nextAmt); 
-
-        //                 break; 
-        //             case 2:
-        //                 System.out.print("Enter Amount Spent on Groceries:: $");
-        //                 samt = kb.next(); 
-                
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next();
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
-
-        //                 currentSpent.set(1, currentSpent.get(1) + nextAmt); 
-
-        //                 break; 
-        //             case 3:
-        //                 System.out.print("Enter Amount Spent on Transportation:: $"); 
-        //                 samt = kb.next();
-
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next();
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
-
-        //                 currentSpent.set(2, currentSpent.get(2) + nextAmt); 
-
-        //                 break; 
-        //             case 4: 
-        //                 System.out.print("Enter Amount Spent on Clothing:: $");
-        //                 samt = kb.next(); 
-
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next(); 
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
-
-        //                 currentSpent.set(3, currentSpent.get(3) + nextAmt); 
-
-        //                 break; 
-        //             case 5: 
-        //                 System.out.print("Enter Amount Spent on Rent:: $");
-        //                 samt = kb.next(); 
-                        
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next(); 
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
-
-        //                 currentSpent.set(4, currentSpent.get(4) + nextAmt); 
-
-        //                 break;  
-        //             case 6: 
-        //                 System.out.print("Enter Amount Spent on Subscriptions: $");
-        //                 samt = kb.next(); 
-   
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next();
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
-
-        //                 currentSpent.set(5, currentSpent.get(5) + nextAmt); 
-
-        //                 break;
-        //             case 7: 
-        //                 System.out.print("Enter Amount Spent on Miscellaneous:: $");
-        //                 samt = kb.next(); 
-                       
-        //                 while(samt.matches("[A-Za-z]*")){
-        //                     System.out.print("Invalid amount.\nInput a new Amount:: $");
-        //                     samt = kb.next();
-        //                 }
-        //                 nextAmt = Double.parseDouble(samt); 
-
-        //                 currentSpent.set(6, currentSpent.get(6) + nextAmt); 
-
-        //                 break; 
-        //             }
-        //     }while(choice > 0 && choice <= 7); 
-
-        //     filewriter.write("1. Utilities:: $" + currentSpent.get(0)+ "\n");
-        //     filewriter.write("2. Groceries:: $" + currentSpent.get(1)+ "\n"); 
-        //     filewriter.write("3. Transportation:: $" + currentSpent.get(2)+ "\n"); 
-        //     filewriter.write("4. Clothing:: $" + currentSpent.get(3)+ "\n"); 
-        //     filewriter.write("5. Rent:: $" + currentSpent.get(4)+ "\n"); 
-        //     filewriter.write("6. Subscriptions:: $" + currentSpent.get(5)+ "\n"); 
-        //     filewriter.write("7. Miscellaneous:: $" + currentSpent.get(6)+ "\n"); 
-        //     filewriter.close();
-        
-        
-        
-        // System.out.println("File has been written");
-        kb.close(); 
-
+        System.out.println("Budget saved successfully.");
+        kb.close();
     }   
     
+    private static int getIntInput(Scanner scanner, String prompt, int min, int max) {
+        int input;
+        while (true) {
+            System.out.print(prompt);
+            String line = scanner.next();
+            try {
+                input = Integer.parseInt(line);
+                if (input >= min && input <= max) {
+                    break;
+                } else {
+                    System.out.println("Please enter a number between " + min + " and " + max + ".");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Try again.");
+            }
+        }
+        return input;
+    }
+
     public static void displayMenu(){
         System.out.println("Choose A Category to input your Amount Spent::\n");
-        System.out.println("1. Enter Amount Spent on Utilities?");
-        System.out.println("2. Enter Amount Spent on Groceries?");
-        System.out.println("3. Enter Amount Spent on Transportation?");
-        System.out.println("4. Enter Amount Spent on Clothing?");
-        System.out.println("5. Enter Amount Spent on Rent?");
-        System.out.println("6. Enter Amount Spent on Subscriptions?");
-        System.out.println("7. Enter Amount Spent on Miscellaneous?");
-        System.out.print("0. Exit Program?"); 
+        for(int i = 0; i < CATEGORY_COUNT; i++){
+            System.out.println((i+1) + ". Enter Amount Spent on " + CATEGORY_NAMES[i] + "?");
+        }
+        System.out.println("0. Exit Program?"); 
+    }
+
+    private static double getDoubleInput(Scanner scanner, String prompt) {
+        double input;
+        while (true) {
+            System.out.print(prompt);
+            String line = scanner.next();
+            try {
+                input = Double.parseDouble(line);
+                if (input >= 0) {
+                    break;
+                } else {
+                    System.out.println("Please enter a positive amount.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid amount. Try again.");
+            }
+        }
+        return input;
     }
 }

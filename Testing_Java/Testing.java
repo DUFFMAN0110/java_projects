@@ -1,9 +1,9 @@
 package Testing_Java;
 
-import java.util.*; 
+// import java.util.*; 
 
-import java.io.FileReader; 
-import java.io.FileWriter;
+// import java.io.FileReader; 
+// import java.io.FileWriter;
 import java.io.IOException;
 // import java.nio.file.Path;
 // import java.nio.file.Paths; 
@@ -27,21 +27,35 @@ public class Testing{
         // System.out.println(w);
 
 
-        String path = "java_projects\\Testing_Java\\test.txt";
-        FileWriter fileWriter = new FileWriter(path); 
+        // String path = "java_projects\\Testing_Java\\test.txt";
+        // FileWriter fileWriter = new FileWriter(path); 
         // FileReader fileReader = new FileReader(path);
         
        
-        fileWriter.write("Please work"); 
+        // fileWriter.write("Please work"); 
         // Path pathth = Paths.get(path);
-        System.out.println("File has been written on"); 
+        // System.out.println("File has been written on"); 
         // Scanner file = new Scanner(pathth); 
         // while(file.hasNextLine()){
         //     System.out.println(file.nextLine());
         // }
         // System.out.println("\n\n");
         // System.out.println(Math.ceil(4));
+        System.out.println(endX("xxhixx"));
+    }
+    static String endX(String str){
 
+        // iterate through the 
+        String front = "", back = ""; 
+
+        for(int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == 'x'){
+                back += str.charAt(i); 
+            }else{
+                front += str.charAt(i); 
+            }
+        }
+        return front + back; 
     }
     // static int add(int l){
     //     int k = l; 
