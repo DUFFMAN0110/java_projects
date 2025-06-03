@@ -1,5 +1,3 @@
-package Testing_Java;
-
 // import java.util.*; 
 
 // import java.io.FileReader; 

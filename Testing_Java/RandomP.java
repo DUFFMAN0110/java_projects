@@ -1,6 +1,3 @@
-package Testing_Java;
-
-
 import java.util.Random;
 
 

@@ -1,6 +1,3 @@
-package Testing_Java;
-
-
 class Marsupial {
     public static boolean isBiped() {
     return false;
