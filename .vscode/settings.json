@@ -1,9 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        ".",
-        "Budgeter",
-        "Ciphers",
-        "Testing_Java"
-    ],
-    "java.project.referencedLibraries": []
-}
